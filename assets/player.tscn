@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyprehki1hi4w"]
+[gd_scene load_steps=12 format=3 uid="uid://cyprehki1hi4w"]
 
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_674bt"]
 
@@ -24,11 +24,15 @@ region = Rect2(17, 204, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rug40"]
 atlas = ExtResource("1_674bt")
-region = Rect2(51, 204, 16, 16)
+region = Rect2(34, 204, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxi64"]
 atlas = ExtResource("1_674bt")
 region = Rect2(17, 204, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uovkd"]
+atlas = ExtResource("1_674bt")
+region = Rect2(51, 204, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nsdob"]
 animations = [{
@@ -63,16 +67,26 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mxi64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uovkd")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 2.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jeibo"]
+size = Vector2(8, 8)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_nsdob")
 animation = &"walk"
+frame_progress = 0.21738
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_jeibo")
