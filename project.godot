@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="timey-wimey"
-run/main_scene="uid://cyprehki1hi4w"
+run/main_scene="uid://dl8n5j61pw6nq"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
