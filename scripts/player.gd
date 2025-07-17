@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var gravity = 30
 @export var max_horizontal_speed = 100
 @export var max_fall_speed = 200
-@export var jump_force = 300
+@export var jump_force = 400
 
 func _physics_process(delta):
 	if !is_on_floor():
@@ -17,4 +17,13 @@ func _physics_process(delta):
 	
 	var horizontal_direction = Input.get_axis("Move Left", "Move Right")
 	velocity.x = speed * horizontal_direction
+	if(horizontal_direction > 0):
+		$Body.flip_h = false
+		$Body.play("walk")
+	elif(horizontal_direction < 0):
+		$Body.flip_h = true
+		$Body.play("walk")
+	else: 
+		$Body.play("idle")
+		
 	move_and_slide()
