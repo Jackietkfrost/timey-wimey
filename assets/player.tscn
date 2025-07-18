@@ -118,6 +118,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+process_mode = 3
 material = ExtResource("1_insbl")
 script = ExtResource("1_3mip4")
 
