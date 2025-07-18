@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://btibsxabxfxhr"]
+
+[ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_ly0of"]
+[ext_resource type="Script" uid="uid://dm0178utf310p" path="res://scripts/moving_platform.gd" id="1_v1hip"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1oxwr"]
+size = Vector2(49.865, 5.985)
+
+[sub_resource type="Animation" id="Animation_0tnto"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0666667, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_00w4g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ofntn"]
+_data = {
+&"RESET": SubResource("Animation_00w4g"),
+&"move": SubResource("Animation_0tnto")
+}
+
+[node name="MovingPlatform" type="Path2D"]
+script = ExtResource("1_v1hip")
+loop = false
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+remote_path = NodePath("../MovingPlatform")
+
+[node name="MovingPlatform" type="AnimatableBody2D" parent="PathFollow2D"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/MovingPlatform"]
+shape = SubResource("RectangleShape2D_1oxwr")
+
+[node name="platform" type="Sprite2D" parent="PathFollow2D/MovingPlatform/CollisionShape2D"]
+position = Vector2(0, 5)
+texture = ExtResource("1_ly0of")
+region_enabled = true
+region_rect = Rect2(68, 34, 50, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ofntn")
+}
