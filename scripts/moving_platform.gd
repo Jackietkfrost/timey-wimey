@@ -1,6 +1,6 @@
 class_name MovingPlatforms extends Path2D
 
-signal platform_timeshift(timeshift_type : String)
+signal platform_timeshift(timeshift_type: String)
 
 var timescale = 1
 
@@ -20,13 +20,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	$PathFollow2D/RemoteTransform2D.update_position = true
-	self.speed_scale = 1*timescale
-	self.speed = 2*timescale
+	self.speed_scale = 1 * timescale
+	self.speed = 2 * timescale
 	$AnimationPlayer.active = true
 	animation.speed_scale = speed_scale
 	path.progress += speed
 
-func _on_platform_timeshift(timeshift_type : String, duration : int, timescale_new : int) -> void:
+func _on_platform_timeshift(timeshift_type: String, duration: int, timescale_new: int) -> void:
 	timescale = timescale_new
-	await get_tree().create_timer(duration,true,false, true).timeout
+	await get_tree().create_timer(duration, true, false, true).timeout
 	timescale = 1

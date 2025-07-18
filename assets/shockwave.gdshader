@@ -14,6 +14,6 @@ void fragment() {
 	COLOR = vec4(SCREEN_UV - disp, 0.0, 1.0);
 	COLOR = texture(screen_texture, SCREEN_UV - disp);
 	//COLOR.rgb = vec3(mask);
-	
+
 	// Called for every pixel the material is visible on.
 }

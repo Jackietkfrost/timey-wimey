@@ -1,6 +1,6 @@
 extends StaticBody2D
-@export var jumpHeight:float = 500
-@export var jumpDistance:float = 200
+@export var jumpHeight: float = 500
+@export var jumpDistance: float = 200
 @onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
