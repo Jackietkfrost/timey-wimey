@@ -44,3 +44,5 @@ func _input(event:InputEvent):
 		get_tree().paused = true
 		await get_tree().create_timer(time_stop_amt,true, false, true).timeout
 		get_tree().paused = false
+		shockwave.set_shader_parameter("center", screenspace_player_pos)
+		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")
