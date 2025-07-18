@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://8g1p8dk7vlpo"]
+
+[ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_psfmd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g2r8"]
+atlas = ExtResource("1_psfmd")
+region = Rect2(170, 289, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70f2c"]
+atlas = ExtResource("1_psfmd")
+region = Rect2(187, 289, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_84rcl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g2r8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70f2c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 14.0
+}]
+
+[node name="Fan" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_84rcl")
+frame_progress = 0.832806
