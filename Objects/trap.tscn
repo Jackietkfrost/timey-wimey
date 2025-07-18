@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cd7u0y43h3cxg"]
+[gd_scene load_steps=6 format=3 uid="uid://cd7u0y43h3cxg"]
 
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_3w8vf"]
 
@@ -24,8 +24,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Trap" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3w8vf"]
+size = Vector2(14, 9)
+
+[node name="Trap" type="StaticBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_o1dq4")
-frame_progress = 0.683945
+frame_progress = 0.862861
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_3w8vf")
