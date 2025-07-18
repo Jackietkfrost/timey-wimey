@@ -9,21 +9,22 @@ extends CharacterBody2D
 func _physics_process(delta):
 	if !is_on_floor():
 		velocity.y += gravity
-		if velocity.y > max_fall_speed :
+		if velocity.y > max_fall_speed:
 			velocity.y = max_fall_speed
 	
 	if Input.is_action_just_pressed("Jump"):
-		velocity.y = -jump_force
+		if is_on_floor():
+			velocity.y = -jump_force
 	
 	var horizontal_direction:float = Input.get_axis("Move Left", "Move Right")
 	velocity.x = speed * horizontal_direction
-	if(horizontal_direction > 0):
-		$Body.flip_h = false
+	if(horizontal_direction):
+		if(horizontal_direction > 0):
+			$Body.flip_h = false
+		elif(horizontal_direction < 0):
+			$Body.flip_h = true
 		$Body.play("walk")
-	elif(horizontal_direction < 0):
-		$Body.flip_h = true
-		$Body.play("walk")
-	else: 
+	elif(horizontal_direction == 0):
 		$Body.play("idle")
 		
 	move_and_slide()
