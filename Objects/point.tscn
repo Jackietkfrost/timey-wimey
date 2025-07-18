@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://0h6jbu30xjpj"]
+
+[ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_ieux2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5874r"]
+atlas = ExtResource("1_ieux2")
+region = Rect2(17, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jrat"]
+atlas = ExtResource("1_ieux2")
+region = Rect2(34, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b2jt"]
+atlas = ExtResource("1_ieux2")
+region = Rect2(51, 17, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_brxwa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5874r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jrat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b2jt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jrat")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Point" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_brxwa")
+frame_progress = 0.106928
