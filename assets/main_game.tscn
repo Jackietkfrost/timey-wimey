@@ -20,7 +20,7 @@ func _process(_delta: float) -> void:
 
 [sub_resource type="Curve2D" id="Curve2D_b04fv"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0)
+"points": PackedVector2Array(0, 0, 0, 0, -295, 99, 0, 0, 0, 0, -225, 101)
 }
 point_count = 2
 
@@ -35,5 +35,5 @@ tile_set = ExtResource("1_rd7um")
 position = Vector2(12, 560)
 
 [node name="MovingPlatform" parent="." instance=ExtResource("4_51q1l")]
-position = Vector2(513, 467)
+position = Vector2(361, 415)
 curve = SubResource("Curve2D_b04fv")
