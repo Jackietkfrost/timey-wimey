@@ -6,7 +6,9 @@ extends CharacterBody2D
 @export var max_fall_speed:float = 200
 @export var jump_force:float = 400
 
-func _physics_process(delta):
+@onready var viewport:Viewport = get_viewport()
+
+func _physics_process(_delta):
 	if !is_on_floor():
 		velocity.y += gravity
 		if velocity.y > max_fall_speed:
@@ -28,3 +30,11 @@ func _physics_process(delta):
 		$Body.play("idle")
 		
 	move_and_slide()
+
+func _input(event:InputEvent):
+	if event.is_action_pressed("Time"):
+		var shockwave:ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
+		var screenspace_player_pos = viewport.get_canvas_transform() * self.position \
+		/ Vector2(viewport.size)
+		shockwave.set_shader_parameter("center", screenspace_player_pos)
+		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave")

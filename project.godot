@@ -15,6 +15,11 @@ run/main_scene="uid://dl8n5j61pw6nq"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=500
+window/size/viewport_height=500
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
