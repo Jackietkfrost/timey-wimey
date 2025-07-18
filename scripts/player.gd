@@ -33,8 +33,6 @@ func _physics_process(_delta):
 
 func _input(event:InputEvent):
 	if event.is_action_pressed("Time"):
-		var root:Window = get_tree().root;
-		var ciScreenPos = (root.get_final_transform() * get_global_transform()).origin
 		var shockwave:ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
 		var screenspace_player_pos = viewport.get_canvas_transform() * self.position \
 		/ Vector2(viewport.size)
