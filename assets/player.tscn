@@ -120,6 +120,7 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 process_mode = 3
 material = ExtResource("1_insbl")
+collision_layer = 3
 script = ExtResource("1_3mip4")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]

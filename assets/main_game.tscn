@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://dl8n5j61pw6nq"]
+[gd_scene load_steps=8 format=4 uid="uid://dl8n5j61pw6nq"]
 
 [ext_resource type="TileSet" uid="uid://clhnlvcyj7sf" path="res://assets/tiles/map_tileset.tres" id="1_rd7um"]
 [ext_resource type="PackedScene" uid="uid://cyprehki1hi4w" path="res://assets/player.tscn" id="2_qqt1b"]
 [ext_resource type="PackedScene" uid="uid://btibsxabxfxhr" path="res://assets/moving_platform.tscn" id="4_51q1l"]
+[ext_resource type="PackedScene" uid="uid://0sxcy5cg8k4v" path="res://Objects/jump_pad.tscn" id="5_51q1l"]
 
 [sub_resource type="GDScript" id="GDScript_qqt1b"]
 script/source = "extends Node2D
@@ -24,6 +25,12 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Curve2D" id="Curve2D_1oxwr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 171.99, 0)
+}
+point_count = 2
+
 [node name="Game" type="Node2D"]
 script = SubResource("GDScript_qqt1b")
 
@@ -35,5 +42,12 @@ tile_set = ExtResource("1_rd7um")
 position = Vector2(12, 560)
 
 [node name="MovingPlatform" parent="." instance=ExtResource("4_51q1l")]
-position = Vector2(361, 415)
+position = Vector2(375, 419)
 curve = SubResource("Curve2D_b04fv")
+
+[node name="MovingPlatform2" parent="." instance=ExtResource("4_51q1l")]
+position = Vector2(520, 466)
+curve = SubResource("Curve2D_1oxwr")
+
+[node name="Node2D" parent="." instance=ExtResource("5_51q1l")]
+position = Vector2(633, 521)
