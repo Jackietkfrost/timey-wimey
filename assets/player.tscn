@@ -87,11 +87,12 @@ script = ExtResource("1_3mip4")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_nsdob")
 animation = &"walk"
-frame_progress = 0.314882
+frame_progress = 0.0737032
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_jeibo")
+debug_color = Color(0, 0.6, 0.701961, 0.133333)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
