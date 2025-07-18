@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dem318qkkubvf"]
+
+[ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_13sy0"]
+[ext_resource type="Script" uid="uid://cpw76d8n5hke0" path="res://Objects/key.gd" id="1_i3axr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3axr"]
+size = Vector2(25, 17)
+
+[node name="Key" type="Area2D"]
+script = ExtResource("1_i3axr")
+
+[node name="KeyCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0.205002, -0.5)
+shape = SubResource("RectangleShape2D_i3axr")
+
+[node name="KeySprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_13sy0")
+region_enabled = true
+region_rect = Rect2(289, 68, 16, 16)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
