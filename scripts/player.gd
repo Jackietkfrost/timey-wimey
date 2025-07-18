@@ -5,10 +5,13 @@ extends CharacterBody2D
 @export var max_horizontal_speed:float = 100
 @export var max_fall_speed:float = 200
 @export var jump_force:float = 400
+@export var time_stop_amt:float = 2
+@export var time_rewind_amt:float = 2
 
 @onready var viewport:Viewport = get_viewport()
 
 func _physics_process(_delta):
+	
 	if !is_on_floor():
 		velocity.y += gravity
 		if velocity.y > max_fall_speed:
@@ -28,7 +31,7 @@ func _physics_process(_delta):
 		$Body.play("walk")
 	elif(horizontal_direction == 0):
 		$Body.play("idle")
-		
+
 	move_and_slide()
 
 func _input(event:InputEvent):
@@ -38,3 +41,8 @@ func _input(event:InputEvent):
 		/ Vector2(viewport.size)
 		shockwave.set_shader_parameter("center", screenspace_player_pos)
 		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave")
+		get_tree().paused = true
+		await get_tree().create_timer(time_stop_amt,true, false, true).timeout
+		get_tree().paused = false
+		shockwave.set_shader_parameter("center", screenspace_player_pos)
+		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")

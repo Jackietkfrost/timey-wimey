@@ -11,9 +11,21 @@ func _ready() -> void:
 	if not loop:
 		animation.play("move")
 		animation.speed_scale = speed_scale
-		set_process(false)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	path.progress += speed
+	if(get_tree().paused):
+		$PathFollow2D/MovingPlatform.constant_linear_velocity = Vector2(0,0)
+		$PathFollow2D/RemoteTransform2D.update_position = false
+		self.speed = 0
+		self.speed_scale = 0
+		$AnimationPlayer.active = false
+	else:
+		$PathFollow2D/RemoteTransform2D.update_position = true
+		self.speed_scale = 1
+		self.speed = 2
+		$AnimationPlayer.active = true
+		animation.speed_scale = speed_scale
+		path.progress += speed
+		
