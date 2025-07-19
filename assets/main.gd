@@ -17,12 +17,7 @@ func _on_child_entered_tree(node: Node) -> void:
 		trap_ref = node
 
 func _on_timeshift(timeshift_type : String, timescale : int) -> void:
-	match timeshift_type :
-		"Rewind" :
-			moving_platform_ref.platform_timeshift.emit("Rewind", timescale)
-		"Pause" :
-			moving_platform_ref.platform_timeshift.emit("Pause", timescale)
-			trap_ref.trap_timeshift.emit("Pause", timescale)
-		"Resume" :
-			moving_platform_ref.platform_timeshift.emit("Resume", timescale)
-			trap_ref.trap_timeshift.emit("Resume", timescale)
+	if moving_platform_ref:
+		moving_platform_ref.platform_timeshift.emit(timeshift_type, timescale)
+	if trap_ref :
+		trap_ref.trap_timeshift.emit(timeshift_type, timescale)

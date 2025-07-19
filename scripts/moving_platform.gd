@@ -1,6 +1,6 @@
 class_name MovingPlatforms extends Path2D
 
-signal platform_timeshift(timeshift_type: String)
+signal platform_timeshift(timeshift_type: String, timescale_new : int)
 
 var timescale = 1
 

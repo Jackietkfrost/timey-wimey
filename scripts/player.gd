@@ -39,7 +39,6 @@ func _physics_process(_delta) :
 		if died:
 			died = false
 			$Camera2D/CanvasLayer/CRT.visible = false
-		gameInstance.timeshift.emit("Resume", 1)
 		
 	if rewind == true || full_rewind == true:
 		var newDirection
