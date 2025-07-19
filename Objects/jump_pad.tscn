@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://0sxcy5cg8k4v"]
+[gd_scene load_steps=9 format=3 uid="uid://ywjpdoaeuhju"]
 
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_526ql"]
 [ext_resource type="Script" uid="uid://dq6011mdwfty" path="res://Objects/jump_pad.gd" id="1_o4t0g"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4t0g"]
-size = Vector2(6, 3)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cysje"]
 atlas = ExtResource("1_526ql")
@@ -12,11 +9,11 @@ region = Rect2(68, 136, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dd87t"]
 atlas = ExtResource("1_526ql")
-region = Rect2(102, 136, 16, 16)
+region = Rect2(85, 136, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h7ut2"]
 atlas = ExtResource("1_526ql")
-region = Rect2(85, 136, 16, 16)
+region = Rect2(102, 136, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hls3s"]
 animations = [{
@@ -29,31 +26,35 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h7ut2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dd87t")
 }],
 "loop": false,
 "name": &"default",
-"speed": 10.0
+"speed": 16.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oeeh7"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pedwa"]
-size = Vector2(14, 12)
+size = Vector2(6, 1)
 
 [node name="Node2D" type="StaticBody2D"]
-collision_layer = 2
 script = ExtResource("1_o4t0g")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5.5)
-shape = SubResource("RectangleShape2D_o4t0g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hls3s")
+frame = 3
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_oeeh7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_pedwa")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="child_entered_tree" from="Area2D/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]

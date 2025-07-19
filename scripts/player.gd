@@ -9,6 +9,7 @@ var speedY : Array[ float ]
 var rewindDuration : float = 3.0
 var rewind:bool
 
+
 @export var speed: float = 100
 @export var gravity: float = 30
 @export var max_horizontal_speed: float = 100
@@ -21,7 +22,29 @@ var rewind:bool
 
 func _on_entered_game(game_ref: Node2D) -> void:
 	gameInstance = game_ref
-	print(gameInstance)
+
+
+func _physics_process(_delta):
+	if !is_on_floor():
+		velocity.y += gravity
+		if velocity.y > max_fall_speed:
+			velocity.y = max_fall_speed
+	
+	if Input.is_action_just_pressed("Jump"):
+		if is_on_floor():
+			velocity.y = -jump_force
+			
+	
+	var horizontal_direction: float = Input.get_axis("Move Left", "Move Right")
+	velocity.x = speed * horizontal_direction
+	if (horizontal_direction):
+		if (horizontal_direction > 0):
+			$Body.flip_h = false
+		elif (horizontal_direction < 0):
+			$Body.flip_h = true
+		$Body.play("walk")
+	elif (horizontal_direction == 0):
+		$Body.play("idle")
 
 
 func _physics_process(_delta) :
@@ -103,4 +126,5 @@ func _input(event: InputEvent):
 			gameInstance.timeshift.emit("Rewind")
 			print("rewinded")
 			self.rewind = true
-	
+			shockwave.set_shader_parameter("center", screenspace_player_pos)
+			$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")

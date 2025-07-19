@@ -20,6 +20,3 @@ func _on_timeshift(timeshift_type : String ) -> void:
 			moving_platform_ref.platform_timeshift.emit("Rewind", 3.0, -1)
 		"Pause" :
 			moving_platform_ref.platform_timeshift.emit("Pause", 3.0, 0)
-
-func _on_property_list_changed() -> void:
-	print("Weeeeee")
