@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://fdiuab7kqqpa"]
+[gd_scene load_steps=10 format=4 uid="uid://fdiuab7kqqpa"]
 
 [ext_resource type="Script" uid="uid://dkks0whtdkjdt" path="res://assets/main.gd" id="1_7j8ne"]
 [ext_resource type="TileSet" uid="uid://clhnlvcyj7sf" path="res://assets/tiles/map_tileset.tres" id="1_jg0dc"]
 [ext_resource type="PackedScene" uid="uid://cyprehki1hi4w" path="res://assets/player.tscn" id="2_nmjpi"]
 [ext_resource type="PackedScene" uid="uid://ywjpdoaeuhju" path="res://Objects/jump_pad.tscn" id="3_xdadj"]
 [ext_resource type="PackedScene" uid="uid://dlp72elqtg7ba" path="res://Objects/key.tscn" id="4_1y8me"]
-[ext_resource type="Material" path="res://shockwave.tres" id="4_7dov7"]
 [ext_resource type="PackedScene" uid="uid://dixqwnl3kd180" path="res://Objects/door.tscn" id="5_n7ypv"]
 [ext_resource type="PackedScene" uid="uid://btibsxabxfxhr" path="res://assets/moving_platform.tscn" id="6_0s5r2"]
 
@@ -29,7 +28,6 @@ tile_map_data = PackedByteArray("AAAAAAQAAAARAAYAAAABAAQAAAAQAAYAAAACAAQAAAAQAAY
 tile_set = ExtResource("1_jg0dc")
 
 [node name="Player" parent="." instance=ExtResource("2_nmjpi")]
-material = ExtResource("4_7dov7")
 position = Vector2(247, -268)
 
 [node name="JumpPad1" parent="." instance=ExtResource("3_xdadj")]
