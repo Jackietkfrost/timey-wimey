@@ -2,8 +2,6 @@ class_name Player extends CharacterBody2D
 
 signal entered_game(game_ref: Node2D)
 
-var gameInstance:Node2D
-
 var speedX : Array[ float ] 
 var speedY : Array[ float ] 
 var rewindDuration : float = 3.0
