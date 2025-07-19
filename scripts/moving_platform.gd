@@ -26,7 +26,5 @@ func _process(_delta: float) -> void:
 	animation.speed_scale = speed_scale
 	path.progress += speed
 
-func _on_platform_timeshift(timeshift_type: String, duration: int, timescale_new: int) -> void:
+func _on_platform_timeshift(timeshift_type: String, timescale_new: int) -> void:
 	timescale = timescale_new
-	await get_tree().create_timer(duration, true, false, true).timeout
-	timescale = 1
