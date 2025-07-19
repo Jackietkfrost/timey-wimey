@@ -2,8 +2,8 @@ class_name Player extends CharacterBody2D
 
 signal entered_game(game_ref: Node2D)
 
-var gameInstance: Node2D
 var gameInstance:Node2D
+
 var speedX : Array[ float ] 
 var speedY : Array[ float ] 
 var rewindDuration : float = 3.0
@@ -23,7 +23,6 @@ func _on_entered_game(game_ref: Node2D) -> void:
 	gameInstance = game_ref
 	print(gameInstance)
 
-	if !is_on_floor():
 
 func _physics_process(_delta) :
 	if self.rewind == true :
@@ -36,6 +35,7 @@ func _physics_process(_delta) :
 			if(newDirection > 0):
 				$Body.flip_h = false
 			elif(newDirection < 0):
+				$Body.flip_h = true
 			$Body.play("walk")
 			if(newDirection == 0):
 				$Body.play("idle")
