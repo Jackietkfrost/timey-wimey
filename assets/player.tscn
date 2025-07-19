@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://cyprehki1hi4w"]
+[gd_scene load_steps=19 format=3 uid="uid://cyprehki1hi4w"]
 
 [ext_resource type="Script" uid="uid://dlfp6dttjlip5" path="res://scripts/player.gd" id="1_3mip4"]
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_674bt"]
 [ext_resource type="Material" uid="uid://bfg8b034nafme" path="res://shaders/shockwave.tres" id="1_insbl"]
+[ext_resource type="Shader" uid="uid://ctv1st0suadf3" path="res://shaders/CRT.gdshader" id="4_rug40"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yceh7"]
 atlas = ExtResource("1_674bt")
@@ -73,6 +74,30 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jeibo"]
 size = Vector2(8, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mxi64"]
+shader = ExtResource("4_rug40")
+shader_parameter/overlay = false
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/brightness = 1.4
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/roll = true
+shader_parameter/roll_speed = 100.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.095
+shader_parameter/aberration = 0.0790001
+shader_parameter/noise_opacity = 1.0
+shader_parameter/noise_speed = 3.425
+shader_parameter/static_noise_intensity = 0.277
+shader_parameter/pixelate = true
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.225
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [sub_resource type="Animation" id="Animation_br4xv"]
 length = 0.001
@@ -164,6 +189,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 metadata/_edit_use_anchors_ = true
 
+[node name="CRT" type="ColorRect" parent="Camera2D/CanvasLayer"]
+visible = false
+z_index = 2
+material = SubResource("ShaderMaterial_mxi64")
+custom_minimum_size = Vector2(500, 500)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/CanvasLayer"]
 root_node = NodePath("../ColorRect")
 libraries = {
@@ -171,3 +210,4 @@ libraries = {
 }
 
 [connection signal="entered_game" from="." to="." method="_on_entered_game"]
+[connection signal="player_rewinded" from="." to="." method="_on_player_rewinded"]
