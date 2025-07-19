@@ -38,4 +38,4 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n5wb3")
-frame_progress = 0.6748
+frame_progress = 0.633471
