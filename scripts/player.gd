@@ -118,9 +118,7 @@ func _physics_process(_delta) :
 			$Body.play("idle")
 
 		move_and_slide()
-		move_and_slide()
 
-func _input(event: InputEvent):
 func _input(event: InputEvent):
 	if event.is_action_pressed("Time"):
 		var shockwave: ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
