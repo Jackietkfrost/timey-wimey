@@ -1,20 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://cyprehki1hi4w"]
+[gd_scene load_steps=17 format=3 uid="uid://cyprehki1hi4w"]
 
 [ext_resource type="Script" uid="uid://dlfp6dttjlip5" path="res://scripts/player.gd" id="1_3mip4"]
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_674bt"]
-[ext_resource type="Material" uid="uid://bfg8b034nafme" path="res://shockwave.tres" id="1_insbl"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_674bt"]
-atlas = ExtResource("1_674bt")
-region = Rect2(0, 204, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nsdob"]
-atlas = ExtResource("1_674bt")
-region = Rect2(85, 204, 16, 16)
+[ext_resource type="Material" uid="uid://bfg8b034nafme" path="res://shaders/shockwave.tres" id="1_insbl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yceh7"]
 atlas = ExtResource("1_674bt")
 region = Rect2(102, 204, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxi64"]
+atlas = ExtResource("1_674bt")
+region = Rect2(119, 204, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3mip4"]
 atlas = ExtResource("1_674bt")
@@ -40,17 +36,14 @@ region = Rect2(68, 204, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_674bt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nsdob")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_yceh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxi64")
 }],
 "loop": false,
 "name": &"die",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -142,8 +135,9 @@ script = ExtResource("1_3mip4")
 [node name="Body" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_nsdob")
-animation = &"walk"
-frame_progress = 0.0737032
+animation = &"die"
+frame = 1
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)

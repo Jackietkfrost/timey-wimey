@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://0h6jbu30xjpj"]
 
-[ext_resource type="Script" path="res://Objects/point.gd" id="1_5874r"]
+[ext_resource type="Script" uid="uid://c2k80yr4wit7v" path="res://scripts/point.gd" id="1_5874r"]
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_ieux2"]
 [ext_resource type="AudioStream" uid="uid://ci2g8ehvnwmd1" path="res://assets/sounds/sfx/SFX- The Ultimate 2017 16 bit Mini pack/Menu/Wav/Menu__008.wav" id="3_4jrat"]
 

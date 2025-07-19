@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://btibsxabxfxhr"]
 
-[ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_ly0of"]
 [ext_resource type="Script" uid="uid://dm0178utf310p" path="res://scripts/moving_platform.gd" id="1_v1hip"]
+[ext_resource type="Texture2D" uid="uid://q55tba46dt05" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent_packed.png" id="2_v1hip"]
 
 [sub_resource type="Curve2D" id="Curve2D_v1hip"]
 
@@ -68,10 +68,9 @@ shape = SubResource("RectangleShape2D_1oxwr")
 one_way_collision = true
 
 [node name="platform" type="Sprite2D" parent="PathFollow2D/MovingPlatform/CollisionShape2D"]
-position = Vector2(0, 5)
-texture = ExtResource("1_ly0of")
+texture = ExtResource("2_v1hip")
 region_enabled = true
-region_rect = Rect2(85, 34, 50, 16)
+region_rect = Rect2(64, 32, 48, 6)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
