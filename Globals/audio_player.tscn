@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dywqjv8rq0e51"]
+
+[ext_resource type="Script" uid="uid://c34ev7orttxkt" path="res://scripts/audio_player.gd" id="1_crtyo"]
+
+[node name="audio_player" type="AudioStreamPlayer"]
+autoplay = true
+script = ExtResource("1_crtyo")
