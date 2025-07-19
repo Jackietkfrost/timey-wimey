@@ -10,7 +10,6 @@ var timescale = 1
 @onready var path = $PathFollow2D
 @onready var animation = $AnimationPlayer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if not loop:
 		animation.play("move")

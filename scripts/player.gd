@@ -30,42 +30,43 @@ func _on_entered_game(game_ref: Node2D) -> void:
 	gameInstance = game_ref
 
 func _physics_process(_delta) :
-	if ( position_history.is_empty() && rewind ) :
+	if ( position_history.is_empty() && rewind) :
 		rewind = false
-		gameInstance.timeshift.emit("Resume", 1)
-	elif (position_history_full.is_empty() && full_rewind ):
+		gameInstance.timeshift.emit("Resume", 1)		
+	elif (position_history_full.is_empty() && position_history.is_empty() && full_rewind  ):
 		full_rewind = false
 		gameInstance.timeshift.emit("Resume", 1)
 		if died:
 			died = false
 			$Camera2D/CanvasLayer/CRT.visible = false
 		gameInstance.timeshift.emit("Resume", 1)
-	elif rewind == true || full_rewind == true:
-			var newDirection
-			var rewind_speed : int = 1
-			if full_rewind :
-				rewind_speed = 2
-			for n in rewind_speed :
-				if !direction_history.is_empty() :
-					newDirection = direction_history.pop_back()
-					if(newDirection > 0):
-						$Body.flip_h = false
-					elif(newDirection < 0):
-						$Body.flip_h = true
-					$Body.play("walk")
-					if(newDirection == 0):
-						$Body.play("idle")
-				if !position_history.is_empty():
-					position = position_history.pop_back()
-				elif !position_history_full.is_empty() :
-					position = position_history_full.pop_back()
-				if !pause_history.is_empty() :
-					var wasPaused = pause_history.pop_back()
-					if paused != wasPaused :
-						if paused :
-							gameInstance.timeshift.emit("Resume", 1)
-						else :
-							gameInstance.timeshift.emit("Pause", 0)
+		
+	if rewind == true || full_rewind == true:
+		var newDirection
+		var rewind_speed : int = 1
+		if full_rewind :
+			rewind_speed = 2
+		for n in rewind_speed :
+			if !direction_history.is_empty() :
+				newDirection = direction_history.pop_back()
+				if(newDirection > 0):
+					$Body.flip_h = false
+				elif(newDirection < 0):
+					$Body.flip_h = true
+				$Body.play("walk")
+				if(newDirection == 0):
+					$Body.play("idle")
+			if !position_history.is_empty():
+				position = position_history.pop_back()
+			elif !position_history_full.is_empty() :
+				position = position_history_full.pop_back()
+			if !pause_history.is_empty() :
+				var wasPaused = pause_history.pop_back()
+				if paused != wasPaused :
+					if paused :
+						gameInstance.timeshift.emit("Resume", 1)
+					else :
+						gameInstance.timeshift.emit("Pause", 0)
 	elif not died:
 		if (rewindDuration * 60 == position_history.size()) :	
 			position_history_full.append(position_history.pop_front())
@@ -139,6 +140,7 @@ func _input(event: InputEvent):
 		
 func _on_player_rewinded(playerDied: bool) -> void:
 	gameInstance.timeshift.emit("Pause", 0)
+	print(playerDied)
 	if (playerDied):
 		died = true
 		sprite.play("die")

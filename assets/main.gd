@@ -2,6 +2,7 @@ extends Node2D
 
 var player_ref : Node2D
 var moving_platform_ref : Node2D
+var trap_ref : Area2D
 
 signal timeshift(timeshift_type : String, timescale : int)
 
@@ -12,6 +13,8 @@ func _on_child_entered_tree(node: Node) -> void:
 		player_ref.entered_game.emit(self)
 	if node is MovingPlatforms:
 		moving_platform_ref = node
+	if node is Trap:
+		trap_ref = node
 
 func _on_timeshift(timeshift_type : String, timescale : int) -> void:
 	match timeshift_type :
@@ -19,5 +22,7 @@ func _on_timeshift(timeshift_type : String, timescale : int) -> void:
 			moving_platform_ref.platform_timeshift.emit("Rewind", timescale)
 		"Pause" :
 			moving_platform_ref.platform_timeshift.emit("Pause", timescale)
+			trap_ref.trap_timeshift.emit("Pause", timescale)
 		"Resume" :
 			moving_platform_ref.platform_timeshift.emit("Resume", timescale)
+			trap_ref.trap_timeshift.emit("Resume", timescale)

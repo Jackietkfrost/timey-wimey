@@ -64,4 +64,5 @@ shape = SubResource("RectangleShape2D_fwotp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_near"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="trap_timeshift" from="." to="." method="_on_trap_timeshift"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
