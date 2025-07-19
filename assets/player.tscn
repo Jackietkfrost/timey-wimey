@@ -175,3 +175,6 @@ root_node = NodePath("../ColorRect")
 libraries = {
 &"": SubResource("AnimationLibrary_lk84l")
 }
+
+[connection signal="entered_game" from="." to="." method="_on_entered_game"]
+[connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]

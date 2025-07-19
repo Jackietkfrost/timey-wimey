@@ -77,3 +77,5 @@ region_rect = Rect2(85, 34, 50, 16)
 libraries = {
 &"": SubResource("AnimationLibrary_ofntn")
 }
+
+[connection signal="platform_timeshift" from="." to="." method="_on_platform_timeshift"]
