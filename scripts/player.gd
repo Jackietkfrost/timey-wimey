@@ -2,14 +2,6 @@ class_name Player extends CharacterBody2D
 
 signal entered_game(game_ref: Node2D)
 
-var gameInstance:Node2D
-
-var speedX : Array[ float ] 
-var speedY : Array[ float ] 
-var rewindDuration : float = 3.0
-var rewind:bool
-
-
 @export var speed: float = 100
 @export var gravity: float = 30
 @export var max_horizontal_speed: float = 100
@@ -17,8 +9,15 @@ var rewind:bool
 @export var jump_force: float = 400
 @export var time_stop_amt: float = 2
 @export var time_rewind_amt: float = 2
+@export var hasKey:bool = false
 
 @onready var viewport: Viewport = get_viewport()
+
+var gameInstance: Node2D
+var rewind: bool = false
+var speedX : Array[ float ] 
+var speedY : Array[ float ] 
+var rewindDuration : float = 3.0
 
 func _on_entered_game(game_ref: Node2D) -> void:
 	gameInstance = game_ref
@@ -82,25 +81,20 @@ func _input(event: InputEvent):
 		gameInstance.timeshift.emit("Pause")
 
 	if event.is_action_pressed("Rewind"):
-		if gameInstance:
-			print(gameInstance)
-			var shockwave: ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
-			var screenspace_player_pos = viewport.get_canvas_transform() * self.position \
-			/ Vector2(viewport.size)
-			shockwave.set_shader_parameter("center", screenspace_player_pos)
-			$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave")
-			gameInstance.timeshift.emit("Rewind")
+		var shockwave: ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
+		var screenspace_player_pos = viewport.get_canvas_transform() * self.position \
+		/ Vector2(viewport.size)
+		shockwave.set_shader_parameter("center", screenspace_player_pos)
+		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave")
+		gameInstance.timeshift.emit("Rewind")
 			
 	if event.is_action_pressed("Player_Rewind") :
-		if gameInstance:
-			print(gameInstance)
-			var shockwave:ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
-			var screenspace_player_pos = viewport.get_canvas_transform() * self.position \
-			/ Vector2(viewport.size)
-			shockwave.set_shader_parameter("center", screenspace_player_pos)
-			$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave")
-			gameInstance.timeshift.emit("Rewind")
-			print("rewinded")
-			self.rewind = true
-			shockwave.set_shader_parameter("center", screenspace_player_pos)
-			$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")
+		var shockwave:ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
+		var screenspace_player_pos = viewport.get_canvas_transform() * self.position \
+		/ Vector2(viewport.size)
+		shockwave.set_shader_parameter("center", screenspace_player_pos)
+		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave")
+		gameInstance.timeshift.emit("Rewind")
+		self.rewind = true
+		shockwave.set_shader_parameter("center", screenspace_player_pos)
+		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")

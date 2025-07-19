@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://dixqwnl3kd180"]
+
+[ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_5xojw"]
+[ext_resource type="Script" uid="uid://docvk8vgynxh" path="res://Objects/door.gd" id="1_vkudc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_br4xv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fpl1"]
+atlas = ExtResource("1_5xojw")
+region = Rect2(306, 34, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1mhi"]
+atlas = ExtResource("1_5xojw")
+region = Rect2(323, 34, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jicb0"]
+atlas = ExtResource("1_5xojw")
+region = Rect2(340, 34, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6phg8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fpl1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fpl1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1mhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jicb0")
+}],
+"loop": false,
+"name": &"door_open",
+"speed": 5.0
+}]
+
+[node name="Door" type="Area2D"]
+script = ExtResource("1_vkudc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_br4xv")
+
+[node name="DoorSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6phg8")
+animation = &"door_open"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
