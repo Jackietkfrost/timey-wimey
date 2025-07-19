@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 signal entered_game(game_ref: Node2D)
-signal player_rewinded()
+signal player_rewinded(died:bool)
 
 @export var speed: float = 100
 @export var gravity: float = 30
@@ -23,6 +23,7 @@ var position_history : Array[ Vector2 ]
 var position_history_full : Array[ Vector2 ]
 var direction_history : Array [ float ]
 var rewindDuration : float = 3.0
+var died: bool = false
 
 func _on_entered_game(game_ref: Node2D) -> void:
 	gameInstance = game_ref
@@ -32,6 +33,9 @@ func _physics_process(_delta) :
 		rewind = false
 	elif (position_history_full.size() < rewind_speed && full_rewind ):
 		full_rewind = false
+		if died:
+			died = false
+			$Camera2D/CanvasLayer/CRT.visible = false
 		
 	if rewind == true || full_rewind == true:
 			var newDirection
@@ -51,10 +55,11 @@ func _physics_process(_delta) :
 					position = position_history_full.pop_back()
 
 	else :
-		if (rewindDuration * 60 == position_history.size()) :	
-			position_history_full.append(position_history.pop_front())
-		if position:	
-			position_history.append( position )	
+		if not died:
+			if (rewindDuration * 60 == position_history.size()) :	
+				position_history_full.append(position_history.pop_front())
+			if position:	
+				position_history.append( position )	
 
 		if !is_on_floor():
 			velocity.y += gravity
@@ -66,18 +71,19 @@ func _physics_process(_delta) :
 				velocity.y = -jump_force
 		
 		var horizontal_direction:float = Input.get_axis("Move Left", "Move Right")
-		velocity.x = speed * horizontal_direction
-		if position:
-			direction_history.append(horizontal_direction)
-		if(horizontal_direction):
-			if(horizontal_direction > 0):
-				$Body.flip_h = false
-			elif(horizontal_direction < 0):
-				$Body.flip_h = true
-			$Body.play("walk")
-		elif(horizontal_direction == 0):
-			$Body.play("idle")
-		move_and_slide()
+		if not died:
+			velocity.x = speed * horizontal_direction
+			if position:
+				direction_history.append(horizontal_direction)
+			if(horizontal_direction):
+				if(horizontal_direction > 0):
+					$Body.flip_h = false
+				elif(horizontal_direction < 0):
+					$Body.flip_h = true
+				$Body.play("walk")
+			elif(horizontal_direction == 0):
+				$Body.play("idle")
+			move_and_slide()
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("Time"):
@@ -108,6 +114,17 @@ func _input(event: InputEvent):
 		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")
 		
 	if event.is_action_pressed("Full_Rewind") :
-		print("full rewindd")
-		self.rewind = true
-		self.full_rewind = true
+		run_full_rewind()
+		
+func run_full_rewind() -> void:
+	self.rewind = true
+	self.full_rewind = true
+
+
+func _on_player_rewinded(playerDied: bool) -> void:
+	if (playerDied):
+		died = true
+		sprite.play("die")
+		await get_tree().create_timer(2, true, true, false).timeout
+		$Camera2D/CanvasLayer/CRT.visible = true
+	run_full_rewind()
