@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://f5mnxji1cwih"
+path="res://.godot/imported/completion_nes_2a03 - Alejoogg.ogg-f59b2dc1f7aeb46fba8724361cb5c833.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/music/completion_nes_2a03 - Alejoogg.ogg"
+dest_files=["res://.godot/imported/completion_nes_2a03 - Alejoogg.ogg-f59b2dc1f7aeb46fba8724361cb5c833.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

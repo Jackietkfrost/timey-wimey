@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://drbs41l510xxg"
+path="res://.godot/imported/inarticulate - axtoncrolley-OpenGameArt.mp3-b35507dcbd4d2d0381cd6fcd2cd2da8e.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/music/inarticulate - axtoncrolley-OpenGameArt.mp3"
+dest_files=["res://.godot/imported/inarticulate - axtoncrolley-OpenGameArt.mp3-b35507dcbd4d2d0381cd6fcd2cd2da8e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

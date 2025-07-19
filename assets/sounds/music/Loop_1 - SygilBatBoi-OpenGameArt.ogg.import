@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c821wspkanlpg"
+path="res://.godot/imported/Loop_1 - SygilBatBoi-OpenGameArt.ogg-eab1476ad9bacacf4bc8b19bbdc2b7da.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/music/Loop_1 - SygilBatBoi-OpenGameArt.ogg"
+dest_files=["res://.godot/imported/Loop_1 - SygilBatBoi-OpenGameArt.ogg-eab1476ad9bacacf4bc8b19bbdc2b7da.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
