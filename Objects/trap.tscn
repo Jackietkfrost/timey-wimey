@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd7u0y43h3cxg"]
+[gd_scene load_steps=7 format=3 uid="uid://cd7u0y43h3cxg"]
 
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_3w8vf"]
+[ext_resource type="Script" path="res://Objects/trap.gd" id="1_fwotp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fwotp"]
 atlas = ExtResource("1_3w8vf")
@@ -28,11 +29,12 @@ animations = [{
 size = Vector2(14, 9)
 
 [node name="Trap" type="StaticBody2D"]
+script = ExtResource("1_fwotp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_o1dq4")
-frame_progress = 0.541873
+frame_progress = 0.43736
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4.5)
