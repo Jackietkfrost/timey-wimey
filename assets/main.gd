@@ -12,7 +12,6 @@ func _on_child_entered_tree(node: Node) -> void:
 		player_ref.entered_game.emit(self)
 	if node is MovingPlatforms:
 		moving_platform_ref = node
-	pass # Replace with function body.
 
 func _on_timeshift(timeshift_type : String ) -> void:
 	match timeshift_type :
