@@ -1,40 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://dlp72elqtg7ba"]
 
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_13sy0"]
-[ext_resource type="Script" uid="uid://dabyj0hpxubbw" path="res://Objects/key.gd" id="1_i3axr"]
+[ext_resource type="Script" uid="uid://cm2tbesvd57xs" path="res://Objects/key.gd" id="1_i3axr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3axr"]
-size = Vector2(25, 17)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63mlb"]
 
 [node name="Key" type="Area2D"]
-collision_layer = 2
-collision_mask = 0
 script = ExtResource("1_i3axr")
 
-[node name="KeyCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0.205002, -0.5)
-shape = SubResource("RectangleShape2D_i3axr")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_63mlb")
 
 [node name="KeySprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_13sy0")
 region_enabled = true
 region_rect = Rect2(289, 68, 16, 16)
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -29.5
-offset_top = -37.0
-offset_right = 29.5
-offset_bottom = -14.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-text = "pickup?"
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
