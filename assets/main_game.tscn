@@ -26,5 +26,4 @@ position = Vector2(361, 415)
 curve = SubResource("Curve2D_b04fv")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
-[connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
 [connection signal="timeshift" from="." to="." method="_on_timeshift"]
