@@ -9,10 +9,10 @@ signal entered_game(game_ref: Node2D)
 @export var jump_force: float = 400
 @export var time_stop_amt: float = 2
 @export var time_rewind_amt: float = 2
+@export var hasKey:bool = false
 
 @onready var viewport: Viewport = get_viewport()
 
-var hasKey:bool = false
 var gameInstance: Node2D
 var rewind: bool = false
 var speedX : Array[ float ] 

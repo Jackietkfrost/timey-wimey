@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dlp72elqtg7ba"]
 
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_13sy0"]
-[ext_resource type="Script" uid="uid://cm2tbesvd57xs" path="res://Objects/key.gd" id="1_i3axr"]
+[ext_resource type="Script" uid="uid://cm2tbesvd57xs" path="res://scripts/key.gd" id="1_i3axr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63mlb"]
 
