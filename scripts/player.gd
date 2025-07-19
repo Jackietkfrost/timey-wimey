@@ -23,30 +23,6 @@ var rewind:bool
 func _on_entered_game(game_ref: Node2D) -> void:
 	gameInstance = game_ref
 
-
-func _physics_process(_delta):
-	if !is_on_floor():
-		velocity.y += gravity
-		if velocity.y > max_fall_speed:
-			velocity.y = max_fall_speed
-	
-	if Input.is_action_just_pressed("Jump"):
-		if is_on_floor():
-			velocity.y = -jump_force
-			
-	
-	var horizontal_direction: float = Input.get_axis("Move Left", "Move Right")
-	velocity.x = speed * horizontal_direction
-	if (horizontal_direction):
-		if (horizontal_direction > 0):
-			$Body.flip_h = false
-		elif (horizontal_direction < 0):
-			$Body.flip_h = true
-		$Body.play("walk")
-	elif (horizontal_direction == 0):
-		$Body.play("idle")
-
-
 func _physics_process(_delta) :
 	if self.rewind == true :
 		if (speedX.is_empty() || speedY.is_empty() ) :
