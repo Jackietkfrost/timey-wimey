@@ -4,16 +4,15 @@ extends Area2D
 var is_damaging: bool = false
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is Player && is_damaging:
-		body.sprite.play("die")
-		get_tree().create_timer(2, true, true, true).timeout
-		body.player_rewinded.emit()
-
+	if body is Player && is_damaging:		
+		var player:Player = body
+		player.player_rewinded.emit(true)
 
 func _on_body_near(body: Node2D) -> void:
-	sprite.play("default")
+	sprite.play("active")
 	is_damaging = true
 
 func _on_body_exited(body: Node2D) -> void:
-	sprite.play_backwards("default")
+	sprite.play("default")
+	
 	is_damaging = false
