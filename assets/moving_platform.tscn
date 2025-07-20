@@ -47,7 +47,6 @@ _data = {
 }
 
 [node name="MovingPlatform" type="Path2D"]
-process_mode = 3
 physics_interpolation_mode = 1
 curve = SubResource("Curve2D_v1hip")
 script = ExtResource("1_v1hip")

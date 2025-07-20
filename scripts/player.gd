@@ -35,8 +35,8 @@ func _physics_process(_delta) :
 		full_rewind = false
 		if died:
 			died = false
-			$Camera2D/CanvasLayer/CRT.visible = false
-		
+		$Camera2D/CanvasLayer/CRT.visible = false
+
 	if rewind == true || full_rewind == true:
 			var newDirection
 			for n in rewind_speed :
@@ -69,6 +69,7 @@ func _physics_process(_delta) :
 		if Input.is_action_just_pressed("Jump"):
 			if is_on_floor():
 				velocity.y = -jump_force
+				AudioPlayer.play_FX(preload("uid://cf3nwdxda6als"))
 		
 		var horizontal_direction:float = Input.get_axis("Move Left", "Move Right")
 		if not died:
@@ -114,17 +115,18 @@ func _input(event: InputEvent):
 		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")
 		
 	if event.is_action_pressed("Full_Rewind") :
-		run_full_rewind()
-		
+		self.player_rewinded.emit()
+
 func run_full_rewind() -> void:
 	self.rewind = true
 	self.full_rewind = true
+	
 
-
-func _on_player_rewinded(playerDied: bool) -> void:
+func _on_player_rewinded(playerDied: bool = false) -> void:
 	if (playerDied):
 		died = true
 		sprite.play("die")
+		AudioPlayer.play_FX(preload("uid://cr1qnrf5rpsmc"))
 		await get_tree().create_timer(2, true, true, false).timeout
-		$Camera2D/CanvasLayer/CRT.visible = true
+	$Camera2D/CanvasLayer/CRT.visible = true
 	run_full_rewind()

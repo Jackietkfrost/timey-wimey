@@ -3,5 +3,7 @@
 [ext_resource type="Script" uid="uid://c34ev7orttxkt" path="res://scripts/audio_player.gd" id="1_crtyo"]
 
 [node name="audio_player" type="AudioStreamPlayer"]
+process_mode = 3
 autoplay = true
+bus = &"Music"
 script = ExtResource("1_crtyo")
