@@ -77,3 +77,8 @@ func show_pause_menu():
 func show_audio_menu():
 	pause_menu.visible = false
 	audio_panel.visible = true
+
+
+func _on_return_2_main_menu_pressed() -> void:
+	resume()
+	get_tree().change_scene_to_file("uid://cfskcc5ogdwsp")
