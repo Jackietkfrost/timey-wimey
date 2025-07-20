@@ -4,7 +4,7 @@ var isInteractable: bool = false
 var player : Player
 var doorOpen : bool = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Interact") && isInteractable && player :
 		if player.hasKey && !doorOpen:
 			doorOpen = true

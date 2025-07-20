@@ -8,6 +8,7 @@ signal player_rewinded(died:bool)
 @export var max_horizontal_speed: float = 100
 @export var max_fall_speed: float = 200
 @export var jump_force: float = 400
+@export var side_jump_force: float = 350
 @export var time_stop_amt: float = 2
 @export var time_rewind_amt: float = 2
 @export var hasKey:bool = false
@@ -18,14 +19,17 @@ signal player_rewinded(died:bool)
 @onready var sprite: AnimatedSprite2D = $Body
 
 var gameInstance: Node2D
-var rewind: bool
-var full_rewind: bool
+var rewind: bool = false
+var full_rewind: bool = false
+var rewind_self : bool = false
 var position_history : Array[ Vector2 ]
 var position_history_full : Array[ Vector2 ]
 var direction_history : Array [ float ]
-var pause_history : Array [bool]
+var timeshift_history : Array [float] = [1.0]
+var timescale : float = 1.0
 var died: bool = false
 var paused: bool = false
+var has_jumped = false
 
 func _on_entered_game(game_ref: Node2D) -> void:
 	gameInstance = game_ref
@@ -33,9 +37,11 @@ func _on_entered_game(game_ref: Node2D) -> void:
 func _physics_process(_delta) :
 	if ( position_history.is_empty() && rewind) :
 		rewind = false
+		rewind_self = false
 		gameInstance.timeshift.emit("Resume", 1)		
 	elif (position_history_full.is_empty() && position_history.is_empty() && full_rewind  ):
 		full_rewind = false
+		rewind_self = false
 		gameInstance.timeshift.emit("Resume", 1)
 		if died:
 			died = false
@@ -60,19 +66,14 @@ func _physics_process(_delta) :
 				position = position_history.pop_back()
 			elif !position_history_full.is_empty() :
 				position = position_history_full.pop_back()
-			if !pause_history.is_empty() :
-				var wasPaused = pause_history.pop_back()
-				if paused != wasPaused :
-					if paused :
-						gameInstance.timeshift.emit("Resume", 1)
-					else :
-						gameInstance.timeshift.emit("Pause", 0)
+			if !timeshift_history.is_empty() :
+				gameInstance.timeshift.emit("Pause", timeshift_history.pop_back())
 	elif not died:
 		if (rewindDuration * 60 == position_history.size()) :	
 			position_history_full.append(position_history.pop_front())
 		if position:	
 			position_history.append( position )	
-			pause_history.append(paused)
+			timeshift_history.append(paused)
 
 		
 		if velocity_modifier.y == 0 :
@@ -84,13 +85,24 @@ func _physics_process(_delta) :
 		
 		if Input.is_action_just_pressed("Jump"):
 			if is_on_floor():
+				has_jumped = false
 				velocity.y = -jump_force
 				AudioPlayer.play_FX(preload("uid://cf3nwdxda6als"))
-		
+			elif is_on_wall():
+				for i in range(get_slide_collision_count()):
+					var collision = get_slide_collision(i)
+					var normal = collision.get_normal()
+					has_jumped = true
+					if normal.x < 0:
+						velocity = Vector2 ( -side_jump_force/2, -side_jump_force )
+					elif normal.x > 0:
+						velocity = Vector2 ( side_jump_force/2, -side_jump_force )
+
 		var horizontal_direction:float = Input.get_axis("Move Left", "Move Right")
 
-		velocity.x = ( speed * horizontal_direction ) + velocity_modifier.x
-		if position:
+		if is_on_floor() :
+			velocity.x = ( speed * horizontal_direction ) + velocity_modifier.x
+			
 			direction_history.append(horizontal_direction)
 		if(horizontal_direction):
 			if(horizontal_direction > 0):
@@ -103,44 +115,37 @@ func _physics_process(_delta) :
 		move_and_slide()
 
 func _input(event: InputEvent):
+	
 	if event.is_action_pressed("Time"):
-		var shockwave: ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
-		var screenspace_player_pos = viewport.get_canvas_transform() * self.position \
-		/ Vector2(viewport.size)
-		shockwave.set_shader_parameter("center", screenspace_player_pos)
-		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave")
-		paused = true
+		_shockwave_effect()
+		timescale = 0
 		gameInstance.timeshift.emit("Pause", 0)
 
 	if event.is_action_pressed("Rewind"):
-		var shockwave: ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
-		var screenspace_player_pos = viewport.get_canvas_transform() * self.position \
-		/ Vector2(viewport.size)
-		shockwave.set_shader_parameter("center", screenspace_player_pos)
-		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave")
+		_shockwave_effect()
+		timescale = -1
 		gameInstance.timeshift.emit("Rewind", -1)
-		#self.rewind = true	
 			
 	if event.is_action_pressed("Player_Rewind") && (rewindDuration * 60 == position_history.size()) :
-		var shockwave:ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
-		var screenspace_player_pos = viewport.get_canvas_transform() * self.position \
-		/ Vector2(viewport.size)
-		shockwave.set_shader_parameter("center", screenspace_player_pos)
-		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave")
-		shockwave.set_shader_parameter("center", screenspace_player_pos)
-		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")
+		timescale = -2
 		gameInstance.timeshift.emit("Rewind", -2)
-		self.full_rewind = true	
+		rewind= true
+		rewind_self = true	
 		
 	if event.is_action_released("Full_Rewind") :
 		gameInstance.timeshift.emit("Resume", 1)
+		timescale = 1
 		self.full_rewind = false
-	if event.is_action_released("Rewind") :
+		rewind_self = false
+		
+	if event.is_action_released("Rewind") && timescale == -1:
 		gameInstance.timeshift.emit("Resume", 1)
-		#self.rewind = false
-	if event.is_action_released("Time") :
+		timescale = 1
+		
+	if event.is_action_released("Time") && timescale == 0:
 		paused = false
 		gameInstance.timeshift.emit("Resume", 1)
+		timescale = 1
 		
 func _on_player_rewinded(playerDied: bool) -> void:
 	gameInstance.timeshift.emit("Pause", 0)
@@ -151,5 +156,15 @@ func _on_player_rewinded(playerDied: bool) -> void:
 		AudioPlayer.play_FX(preload("uid://cr1qnrf5rpsmc"))
 		await get_tree().create_timer(2, true, true, false).timeout
 		$Camera2D/CanvasLayer/CRT.visible = true
-	self.full_rewind = true
+	full_rewind = true
+	rewind_self = true
 	gameInstance.timeshift.emit("Rewind", -2)
+
+func _shockwave_effect() ->  void :
+	var shockwave:ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
+	var screenspace_player_pos = viewport.get_canvas_transform() * self.position \
+	/ Vector2(viewport.size)
+	shockwave.set_shader_parameter("center", screenspace_player_pos)
+	$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave")
+	shockwave.set_shader_parameter("center", screenspace_player_pos)
+	$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")
