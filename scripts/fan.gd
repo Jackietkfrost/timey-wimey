@@ -32,7 +32,7 @@ func _ready() :
 	fan.play("default")
 	
 
-func _on_fan_timeshift(timeshift_type: String, timescale_new: int) -> void:
+func _on_fan_timeshift(_timeshift_type: String, timescale_new: int) -> void:
 	if (timescale_new != 0 && timescale == 0 ) : #game unpaused
 		gust.visible = true
 	elif (timescale_new == 0 && timescale != 0): #game paused
