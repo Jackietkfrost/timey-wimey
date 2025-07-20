@@ -1,6 +1,6 @@
 extends AudioStreamPlayer
 
-const level_music = preload("uid://igvime6g0jrt")
+const level_music = preload("uid://igvime6g0jrt") #8bitnightmare
 
 func _play_music(music: AudioStream, volume: float = 0.0):
 	if self.stream == music:
@@ -16,11 +16,14 @@ func _play_music(music: AudioStream, volume: float = 0.0):
 func play_music_level(vol = 0.0):
 	_play_music(level_music, vol)
 
+
 func play_FX(stream: AudioStream, volume: float = 0.0):
-	var fx_player = AudioStream.new()
+	var fx_player: AudioStreamPlayer = AudioStreamPlayer.new()
 	fx_player.stream = stream
-	fx_player.volume = volume
+	fx_player.volume_db = volume
+	fx_player.bus = "SFX"
 	add_child(fx_player)
-	
+	fx_player.play()
+
 	await fx_player.finished
 	fx_player.queue_free()

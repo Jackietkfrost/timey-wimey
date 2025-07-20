@@ -25,6 +25,7 @@ func _on_body_near(body: Node2D) -> void:
 	if body is Player :
 		is_in_range = true
 
+
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player :
 		is_in_range = false
@@ -36,6 +37,7 @@ func _process(delta: float) -> void:
 	if(timescale != 0) :
 		if is_in_range && !is_active :
 			sprite.play("active")
+			AudioPlayer.play_FX(preload("uid://c4kusyufnc2ug"))
 			is_active=true
 			if is_touching && player_ref && !player_ref.died:
 				player_ref.player_rewinded.emit(true)

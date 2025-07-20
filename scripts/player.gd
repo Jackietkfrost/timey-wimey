@@ -39,8 +39,8 @@ func _physics_process(_delta) :
 		gameInstance.timeshift.emit("Resume", 1)
 		if died:
 			died = false
-			$Camera2D/CanvasLayer/CRT.visible = false
-		
+		$Camera2D/CanvasLayer/CRT.visible = false
+
 	if rewind == true || full_rewind == true:
 		var newDirection
 		var rewind_speed : int = 1
@@ -85,6 +85,7 @@ func _physics_process(_delta) :
 		if Input.is_action_just_pressed("Jump"):
 			if is_on_floor():
 				velocity.y = -jump_force
+				AudioPlayer.play_FX(preload("uid://cf3nwdxda6als"))
 		
 		var horizontal_direction:float = Input.get_axis("Move Left", "Move Right")
 
@@ -147,8 +148,8 @@ func _on_player_rewinded(playerDied: bool) -> void:
 	if (playerDied):
 		died = true
 		sprite.play("die")
+		AudioPlayer.play_FX(preload("uid://cr1qnrf5rpsmc"))
 		await get_tree().create_timer(2, true, true, false).timeout
 		$Camera2D/CanvasLayer/CRT.visible = true
 	self.full_rewind = true
 	gameInstance.timeshift.emit("Rewind", -2)
-	

@@ -1,0 +1,202 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvf7jxcgc87co"]
+
+[ext_resource type="Script" uid="uid://cr6k3tcdwbkn1" path="res://scripts/pause_menu.gd" id="1_q2323"]
+[ext_resource type="Shader" uid="uid://sbk40qeji533" path="res://shaders/pause_menu_blur.gdshader" id="2_hmsig"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c8sml"]
+shader = ExtResource("2_hmsig")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_q2323"]
+resource_name = "AudioMenuAppear"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_y8bh2"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PausePanelContainer:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_kmreq"]
+resource_name = "blur"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PausePanelContainer:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aliht"]
+_data = {
+&"AudioMenuAppear": SubResource("Animation_q2323"),
+&"RESET": SubResource("Animation_y8bh2"),
+&"blur": SubResource("Animation_kmreq")
+}
+
+[node name="PauseMenuCanvas" type="CanvasLayer"]
+process_mode = 3
+
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q2323")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+material = SubResource("ShaderMaterial_c8sml")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PausePanelContainer" type="PanelContainer" parent="PauseMenu"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenu" type="VBoxContainer" parent="PauseMenu/PausePanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/PausePanelContainer/PauseMenu"]
+layout_mode = 2
+text = "Resume"
+
+[node name="OptionsButton" type="Button" parent="PauseMenu/PausePanelContainer/PauseMenu"]
+layout_mode = 2
+text = "Options (Audio)"
+
+[node name="RestartButton" type="Button" parent="PauseMenu/PausePanelContainer/PauseMenu"]
+layout_mode = 2
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/PausePanelContainer/PauseMenu"]
+layout_mode = 2
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_aliht")
+}
+
+[node name="AudioMenuPanel" type="PanelContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -68.5
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioPanel" type="VBoxContainer" parent="PauseMenu/AudioMenuPanel"]
+layout_mode = 2
+
+[node name="MasterLabel" type="Label" parent="PauseMenu/AudioMenuPanel/AudioPanel"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Master"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="PauseMenu/AudioMenuPanel/AudioPanel"]
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Music-Label" type="Label" parent="PauseMenu/AudioMenuPanel/AudioPanel"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="PauseMenu/AudioMenuPanel/AudioPanel"]
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="SFX-Label" type="Label" parent="PauseMenu/AudioMenuPanel/AudioPanel"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="PauseMenu/AudioMenuPanel/AudioPanel"]
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="BackButton" type="Button" parent="PauseMenu/AudioMenuPanel/AudioPanel"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="PauseMenu/PausePanelContainer/PauseMenu/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/PausePanelContainer/PauseMenu/ResumeButton" to="PauseMenu" method="_on_resume_bttn_pressed"]
+[connection signal="pressed" from="PauseMenu/PausePanelContainer/PauseMenu/OptionsButton" to="PauseMenu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="PauseMenu/PausePanelContainer/PauseMenu/RestartButton" to="PauseMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PauseMenu/PausePanelContainer/PauseMenu/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="PauseMenu/AudioMenuPanel/AudioPanel/MasterSlider" to="PauseMenu" method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="PauseMenu/AudioMenuPanel/AudioPanel/MusicSlider" to="PauseMenu" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="PauseMenu/AudioMenuPanel/AudioPanel/SFXSlider" to="PauseMenu" method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="PauseMenu/AudioMenuPanel/AudioPanel/BackButton" to="PauseMenu" method="_on_back_button_pressed"]
