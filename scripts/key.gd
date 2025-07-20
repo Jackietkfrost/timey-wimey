@@ -1,10 +1,9 @@
 extends Area2D
 
-@onready var interactable: Area2D = $Interactable
 var isInteractable: bool = false
 var player : Player
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Interact") && isInteractable && player:
 		player.hasKey = true
 		self.queue_free()
@@ -12,9 +11,9 @@ func _process(delta: float) -> void:
 #func _ready() -> void:
 	#interactable.interact = _on_interact
 
-func _on_interact():
-	interactable.is_interactable = false
-	print("key picked up")
+#func _on_interact():
+	#interactable.is_interactable = false
+	#print("key picked up")
 
 
 func _on_body_entered(body: Node2D) -> void:

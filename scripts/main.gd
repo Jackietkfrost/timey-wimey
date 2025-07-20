@@ -6,6 +6,9 @@ var trap_ref : Area2D
 
 signal timeshift(timeshift_type : String, timescale : int)
 
+func _ready() -> void:
+	AudioPlayer.play_music_level()
+
 func _on_child_entered_tree(node: Node) -> void:
 	print("Child entered: " + str(node.name))
 	if node is Player:
