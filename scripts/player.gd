@@ -30,6 +30,7 @@ var timescale : float = 1.0
 var died: bool = false
 var paused: bool = false
 var has_jumped = false
+var wall_jump_ref
 
 func _on_entered_game(game_ref: Node2D) -> void:
 	gameInstance = game_ref
@@ -85,25 +86,22 @@ func _physics_process(_delta) :
 		
 		if Input.is_action_just_pressed("Jump"):
 			if is_on_floor():
-				has_jumped = false
 				velocity.y = -jump_force
 				AudioPlayer.play_FX(preload("uid://cf3nwdxda6als"))
-			elif is_on_wall():
-				for i in range(get_slide_collision_count()):
-					var collision = get_slide_collision(i)
-					var normal = collision.get_normal()
-					has_jumped = true
-					if normal.x < 0:
-						velocity = Vector2 ( -side_jump_force/2, -side_jump_force )
-					elif normal.x > 0:
-						velocity = Vector2 ( side_jump_force/2, -side_jump_force )
+			#elif is_on_wall() && !has_jumped:
+			#	for i in range(get_slide_collision_count()):
+			#		var collision = get_slide_collision(i)
+			#		var normal = collision.get_normal()
+			#		has_jumped = true
+			#		if normal.x < 0:
+			#			velocity = Vector2 ( -side_jump_force/2, -side_jump_force )
+			#		elif normal.x > 0:
+			#			velocity = Vector2 ( side_jump_force/2, -side_jump_force )
 
 		var horizontal_direction:float = Input.get_axis("Move Left", "Move Right")
-
-		if is_on_floor() :
-			velocity.x = ( speed * horizontal_direction ) + velocity_modifier.x
-			
-			direction_history.append(horizontal_direction)
+		velocity.x = ( speed * horizontal_direction ) + velocity_modifier.x	
+		direction_history.append(horizontal_direction)
+		
 		if(horizontal_direction):
 			if(horizontal_direction > 0):
 				$Body.flip_h = false
@@ -117,12 +115,12 @@ func _physics_process(_delta) :
 func _input(event: InputEvent):
 	
 	if event.is_action_pressed("Time"):
-		_shockwave_effect()
+		_shockwave_effect("shockwave")
 		timescale = 0
 		gameInstance.timeshift.emit("Pause", 0)
 
 	if event.is_action_pressed("Rewind"):
-		_shockwave_effect()
+		_shockwave_effect("shockwave")
 		timescale = -1
 		gameInstance.timeshift.emit("Rewind", -1)
 			
@@ -143,6 +141,7 @@ func _input(event: InputEvent):
 		timescale = 1
 		
 	if event.is_action_released("Time") && timescale == 0:
+		_shockwave_effect("shockwave-end")
 		paused = false
 		gameInstance.timeshift.emit("Resume", 1)
 		timescale = 1
@@ -160,11 +159,11 @@ func _on_player_rewinded(playerDied: bool) -> void:
 	rewind_self = true
 	gameInstance.timeshift.emit("Rewind", -2)
 
-func _shockwave_effect() ->  void :
+func _shockwave_effect(name : String ) ->  void :
 	var shockwave:ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
 	var screenspace_player_pos = viewport.get_canvas_transform() * self.position \
 	/ Vector2(viewport.size)
 	shockwave.set_shader_parameter("center", screenspace_player_pos)
-	$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave")
-	shockwave.set_shader_parameter("center", screenspace_player_pos)
-	$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")
+	$Camera2D/CanvasLayer/AnimationPlayer.play(name)
+	#shockwave.set_shader_parameter("center", screenspace_player_pos)
+	#$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")
