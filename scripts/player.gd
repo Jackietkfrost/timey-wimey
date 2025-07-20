@@ -126,6 +126,7 @@ func _on_player_rewinded(playerDied: bool = false) -> void:
 	if (playerDied):
 		died = true
 		sprite.play("die")
+		AudioPlayer.play_FX(preload("uid://cr1qnrf5rpsmc"))
 		await get_tree().create_timer(2, true, true, false).timeout
 	$Camera2D/CanvasLayer/CRT.visible = true
 	run_full_rewind()
