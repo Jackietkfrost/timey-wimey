@@ -10,6 +10,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_near(body: Node2D) -> void:
 	sprite.play("active")
+	AudioPlayer.play_FX(preload("uid://c4kusyufnc2ug"))
 	is_damaging = true
 
 func _on_body_exited(body: Node2D) -> void:

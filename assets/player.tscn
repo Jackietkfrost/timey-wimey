@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://cyprehki1hi4w"]
+[gd_scene load_steps=20 format=3 uid="uid://cyprehki1hi4w"]
 
 [ext_resource type="Script" uid="uid://dlfp6dttjlip5" path="res://scripts/player.gd" id="1_3mip4"]
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_674bt"]
 [ext_resource type="Material" uid="uid://bfg8b034nafme" path="res://shaders/shockwave.tres" id="1_insbl"]
 [ext_resource type="Shader" uid="uid://ctv1st0suadf3" path="res://shaders/CRT.gdshader" id="4_rug40"]
+[ext_resource type="PackedScene" uid="uid://cvf7jxcgc87co" path="res://assets/pause_menu.tscn" id="5_mxi64"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yceh7"]
 atlas = ExtResource("1_674bt")
@@ -152,7 +153,6 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-process_mode = 3
 material = ExtResource("1_insbl")
 collision_layer = 3
 script = ExtResource("1_3mip4")
@@ -208,6 +208,8 @@ root_node = NodePath("../ColorRect")
 libraries = {
 &"": SubResource("AnimationLibrary_lk84l")
 }
+
+[node name="PauseMenuCanvas" parent="." instance=ExtResource("5_mxi64")]
 
 [connection signal="entered_game" from="." to="." method="_on_entered_game"]
 [connection signal="player_rewinded" from="." to="." method="_on_player_rewinded"]
