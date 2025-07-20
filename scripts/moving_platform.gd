@@ -1,6 +1,6 @@
 class_name MovingPlatforms extends Path2D
 
-signal platform_timeshift(timeshift_type: String)
+signal platform_timeshift(timeshift_type: String, timescale_new : int)
 
 var timescale = 1
 
@@ -10,7 +10,6 @@ var timescale = 1
 @onready var path = $PathFollow2D
 @onready var animation = $AnimationPlayer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if not loop:
 		animation.play("move")
@@ -26,7 +25,5 @@ func _process(_delta: float) -> void:
 	animation.speed_scale = speed_scale
 	path.progress += speed
 
-func _on_platform_timeshift(timeshift_type: String, duration: int, timescale_new: int) -> void:
+func _on_platform_timeshift(timeshift_type: String, timescale_new: int) -> void:
 	timescale = timescale_new
-	await get_tree().create_timer(duration, true, false, true).timeout
-	timescale = 1
