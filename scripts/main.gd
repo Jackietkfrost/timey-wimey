@@ -11,7 +11,6 @@ func _ready() -> void:
 	AudioPlayer.play_music_level()
 
 func _on_child_entered_tree(node: Node) -> void:
-	print("Child entered: " + str(node.name))
 	if node is Player:
 		player_ref = node
 		player_ref.entered_game.emit(self)
