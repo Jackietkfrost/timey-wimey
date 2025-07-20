@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://sk16xc8lf2rx"]
 
 [ext_resource type="Texture2D" uid="uid://q55tba46dt05" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent_packed.png" id="1_8e4qo"]
-[ext_resource type="Script" uid="uid://c31xj06i68nmn" path="res://scripts/enemy_base.gd" id="1_ldf1s"]
+[ext_resource type="Script" uid="uid://m8megs4jglhb" path="res://scripts/enemy_base.gd" id="1_ldf1s"]
 
 [sub_resource type="Curve2D" id="Curve2D_tv848"]
 
@@ -63,11 +63,11 @@ animations = [{
 
 [node name="Path2D" type="Path2D"]
 curve = SubResource("Curve2D_tv848")
+script = ExtResource("1_ldf1s")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 
 [node name="Enemy" type="CharacterBody2D" parent="PathFollow2D"]
-script = ExtResource("1_ldf1s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Enemy"]
 position = Vector2(0, 2)
