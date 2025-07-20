@@ -18,7 +18,8 @@ func _on_body_entered(body: Node2D) -> void:
 			player_ref.player_rewinded.emit(true)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	is_touching = false
+	if body is Player:
+		is_touching = false
 
 
 func _on_body_near(body: Node2D) -> void:
@@ -30,10 +31,10 @@ func _on_body_exited(body: Node2D) -> void:
 	if body is Player :
 		is_in_range = false
 
-func _on_trap_timeshift(timeshift_type: String, timescale_new: int) -> void:
+func _on_trap_timeshift(_timeshift_type: String, timescale_new: int) -> void:
 	timescale = timescale_new
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(timescale != 0) :
 		if is_in_range && !is_active :
 			sprite.play("active")

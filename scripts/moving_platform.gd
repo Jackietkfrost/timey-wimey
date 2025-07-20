@@ -25,5 +25,5 @@ func _process(_delta: float) -> void:
 	animation.speed_scale = speed_scale
 	path.progress += speed
 
-func _on_platform_timeshift(timeshift_type: String, timescale_new: int) -> void:
+func _on_platform_timeshift(_timeshift_type: String, timescale_new: int) -> void:
 	timescale = timescale_new
