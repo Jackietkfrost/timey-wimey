@@ -12,6 +12,7 @@ signal player_rewinded(died:bool)
 @export var time_rewind_amt: float = 2
 @export var hasKey:bool = false
 @export var rewindDuration : float = 3.0
+@export var velocity_modifier : Vector2 = Vector2 (0,0)
 
 @onready var viewport: Viewport = get_viewport()
 @onready var sprite: AnimatedSprite2D = $Body
@@ -73,10 +74,13 @@ func _physics_process(_delta) :
 			position_history.append( position )	
 			pause_history.append(paused)
 
-		if !is_on_floor():
+		
+		if velocity_modifier.y == 0 :
 			velocity.y += gravity
 			if velocity.y > max_fall_speed:
 				velocity.y = max_fall_speed
+		else :
+			velocity.y = velocity_modifier.y + gravity
 		
 		if Input.is_action_just_pressed("Jump"):
 			if is_on_floor():
@@ -84,7 +88,7 @@ func _physics_process(_delta) :
 		
 		var horizontal_direction:float = Input.get_axis("Move Left", "Move Right")
 
-		velocity.x = speed * horizontal_direction
+		velocity.x = ( speed * horizontal_direction ) + velocity_modifier.x
 		if position:
 			direction_history.append(horizontal_direction)
 		if(horizontal_direction):
