@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 AudioPlayer="*res://Globals/audio_player.tscn"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=500
