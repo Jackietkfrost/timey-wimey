@@ -43,4 +43,3 @@ func _process(delta: float) -> void:
 			sprite.play("default")
 			is_active=false
 		
-	

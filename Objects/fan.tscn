@@ -96,5 +96,6 @@ sprite_frames = SubResource("SpriteFrames_rrr3w")
 animation = &"blow_wind"
 autoplay = "default"
 
+[connection signal="fan_timeshift" from="." to="." method="_on_fan_timeshift"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_entered_gust"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_exited_gust"]
