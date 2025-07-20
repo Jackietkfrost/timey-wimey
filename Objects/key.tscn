@@ -1,9 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlp72elqtg7ba"]
+[gd_scene load_steps=11 format=3 uid="uid://dlp72elqtg7ba"]
 
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_13sy0"]
 [ext_resource type="Script" uid="uid://cm2tbesvd57xs" path="res://scripts/key.gd" id="1_i3axr"]
+[ext_resource type="Texture2D" uid="uid://dnnkbxa7x761x" path="res://assets/icons/prompts/E_Prompt.png" id="3_63mlb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63mlb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_121kn"]
+atlas = ExtResource("3_63mlb")
+region = Rect2(0, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m13x"]
+atlas = ExtResource("3_63mlb")
+region = Rect2(23, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dydmr"]
+atlas = ExtResource("3_63mlb")
+region = Rect2(46, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oede5"]
+atlas = ExtResource("3_63mlb")
+region = Rect2(69, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp1xj"]
+atlas = ExtResource("3_63mlb")
+region = Rect2(92, 0, 23, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ly8d"]
+animations = [{
+"frames": [{
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_121kn")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_4m13x")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_dydmr")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_oede5")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_dp1xj")
+}],
+"loop": true,
+"name": &"e_prompt",
+"speed": 12.0
+}]
 
 [node name="Key" type="Area2D"]
 script = ExtResource("1_i3axr")
@@ -15,6 +59,13 @@ shape = SubResource("RectangleShape2D_63mlb")
 texture = ExtResource("1_13sy0")
 region_enabled = true
 region_rect = Rect2(289, 68, 16, 16)
+
+[node name="Prompt" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -29)
+sprite_frames = SubResource("SpriteFrames_4ly8d")
+animation = &"e_prompt"
+frame_progress = 0.707663
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

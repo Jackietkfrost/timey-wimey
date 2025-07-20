@@ -8,7 +8,7 @@ signal timeshift()
 #@export var curve2d:Curve2D
 @export var runSpeed:float = .2
 @export var isFlying:bool = false
-@export var canBePaused: bool = false
+@export var canBePaused: bool = true
 
 var timescale: float = 1
 

@@ -31,7 +31,7 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_wcjpl"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -102.745)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -115)
 }
 point_count = 2
 
@@ -139,7 +139,7 @@ position = Vector2(660, 467)
 curve = SubResource("Curve2D_hbb88")
 
 [node name="MovingPlatform4" parent="." instance=ExtResource("8_at1ld")]
-position = Vector2(555, 364)
+position = Vector2(555, 371)
 curve = SubResource("Curve2D_wcjpl")
 
 [node name="Fan" parent="." instance=ExtResource("9_sd18g")]
