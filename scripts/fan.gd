@@ -5,12 +5,11 @@ signal fan_timeshift(timeshift_type: String, timescale_new: int)
 @onready var gust: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fan: AnimatedSprite2D = $Fan
 
-
 @export var pushback_strength : Vector2 = Vector2 (70,0)
 
 var player_ref
 var timescale = 1
-var is_touching = true
+var is_touching = false
 var angle : float
 
 func _on_entered_gust(body: Node2D) -> void:
