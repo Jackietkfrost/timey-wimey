@@ -8,9 +8,9 @@ signal timeshift()
 #@export var curve2d:Curve2D
 @export var runSpeed:float = .2
 @export var isFlying:bool = false
+@export var canBePaused: bool = false
 
 var timescale: float = 1
-var isPaused: bool = false
 
 func _ready() -> void:
 	#self.curve2D = curve2d
@@ -30,9 +30,11 @@ func _process(delta: float) -> void:
 
 
 func _on_timeshift(timeshift_type: String, newTimescale:float) -> void:
-	timescale = newTimescale
+	if canBePaused:
+		timescale = newTimescale
 
 
 func _on_kill_zone_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.player_rewinded.emit(true)
+		if not body.died:
+			body.player_rewinded.emit(true)
