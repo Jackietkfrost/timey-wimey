@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://sk16xc8lf2rx"]
+
+[ext_resource type="Texture2D" uid="uid://q55tba46dt05" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent_packed.png" id="1_8e4qo"]
+[ext_resource type="Script" uid="uid://c31xj06i68nmn" path="res://scripts/enemy_base.gd" id="1_ldf1s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldf1s"]
+size = Vector2(12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw7eg"]
+atlas = ExtResource("1_8e4qo")
+region = Rect2(0, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s22ri"]
+atlas = ExtResource("1_8e4qo")
+region = Rect2(48, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5fu0"]
+atlas = ExtResource("1_8e4qo")
+region = Rect2(64, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8hxk"]
+atlas = ExtResource("1_8e4qo")
+region = Rect2(16, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puna2"]
+atlas = ExtResource("1_8e4qo")
+region = Rect2(32, 256, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s22ri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kw7eg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s22ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5fu0")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8hxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puna2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve2D" id="Curve2D_tv848"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_ldf1s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_ldf1s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s22ri")
+animation = &"die"
+frame = 1
+frame_progress = 1.0
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_tv848")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
