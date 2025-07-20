@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://sk16xc8lf2rx"]
+[gd_scene load_steps=10 format=3 uid="uid://sk16xc8lf2rx"]
 
 [ext_resource type="Texture2D" uid="uid://q55tba46dt05" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent_packed.png" id="1_8e4qo"]
 [ext_resource type="Script" uid="uid://m8megs4jglhb" path="res://scripts/enemy_base.gd" id="1_ldf1s"]
-
-[sub_resource type="Curve2D" id="Curve2D_tv848"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldf1s"]
 size = Vector2(12, 12)
@@ -62,10 +60,10 @@ animations = [{
 }]
 
 [node name="Path2D" type="Path2D"]
-curve = SubResource("Curve2D_tv848")
-script = ExtResource("1_ldf1s")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotates = false
+script = ExtResource("1_ldf1s")
 
 [node name="Enemy" type="CharacterBody2D" parent="PathFollow2D"]
 
@@ -78,3 +76,5 @@ sprite_frames = SubResource("SpriteFrames_s22ri")
 animation = &"walk"
 autoplay = "default"
 frame_progress = 0.840298
+
+[node name="Node2D" type="Node2D" parent="."]

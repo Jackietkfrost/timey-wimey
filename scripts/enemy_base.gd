@@ -1,6 +1,8 @@
-class_name Enemy_Base extends Path2D
+class_name Enemy_Base extends PathFollow2D
 
 signal timeshift()
 
-@onready var patrol_path: Path2D = $AnimatedSprite2D/Path2D
-@onready var follow_path: PathFollow2D = $Path2D/PathFollow2D
+@export var runSpeed:float = 20
+
+func _process(delta: float) -> void:
+	set_progress(get_progress() * runSpeed * delta)
