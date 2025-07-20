@@ -17,31 +17,31 @@ func _on_entered_gust(body: Node2D) -> void:
 		is_touching = true
 		player_ref = body
 		if (timescale != 0) :
-			player_ref.velocity_modifier += pushback_strength
+			player_ref.velocity_modifier += pushback_strength * timescale
 
 func _on_exited_gust(body: Node2D) -> void:
 	if body is Player:
 		is_touching = false
 		if (timescale != 0) :
-			player_ref.velocity_modifier -= pushback_strength
+			player_ref.velocity_modifier -= pushback_strength * timescale
 
 func _ready() :
 	var angle = deg_to_rad(self.rotation_degrees)
 	pushback_strength = ( Vector2 (fan_strength, 0) ).rotated(angle)
-	
 	gust.play("blow_wind")
 	fan.play("default")
 	
 
 func _on_fan_timeshift(timeshift_type: String, timescale_new: int) -> void:
 	if (timescale_new != 0 && timescale == 0 ) : #game unpaused
-		if (player_ref && is_touching) :
-			player_ref.velocity_modifier += pushback_strength
 		gust.visible = true
 	elif (timescale_new == 0 && timescale != 0): #game paused
-		if (player_ref && is_touching) :
-			player_ref.velocity_modifier -= pushback_strength
 		gust.visible = false
+
+	if (player_ref && is_touching) :
+		player_ref.velocity_modifier -= pushback_strength * timescale
+		player_ref.velocity_modifier += pushback_strength * timescale_new
+		
 	fan.play("default", timescale_new)
-	gust.play("blow_wind", timescale_new)		
+	gust.play("blow_wind", timescale_new)	
 	timescale = timescale_new
