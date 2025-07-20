@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://q55tba46dt05" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent_packed.png" id="1_8e4qo"]
 [ext_resource type="Script" uid="uid://c31xj06i68nmn" path="res://scripts/enemy_base.gd" id="1_ldf1s"]
 
+[sub_resource type="Curve2D" id="Curve2D_tv848"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldf1s"]
 size = Vector2(12, 12)
 
@@ -59,22 +61,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Curve2D" id="Curve2D_tv848"]
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_tv848")
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+
+[node name="Enemy" type="CharacterBody2D" parent="PathFollow2D"]
 script = ExtResource("1_ldf1s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Enemy"]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_ldf1s")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D/Enemy"]
 sprite_frames = SubResource("SpriteFrames_s22ri")
-animation = &"die"
-frame = 1
-frame_progress = 1.0
-
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_tv848")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+animation = &"walk"
+autoplay = "default"
+frame_progress = 0.840298
