@@ -119,7 +119,7 @@ func _input(event: InputEvent):
 		shockwave.set_shader_parameter("center", screenspace_player_pos)
 		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave")
 		gameInstance.timeshift.emit("Rewind", -1)
-		self.rewind = true	
+		#self.rewind = true	
 			
 	if event.is_action_pressed("Player_Rewind") && (rewindDuration * 60 == position_history.size()) :
 		var shockwave:ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
@@ -130,14 +130,14 @@ func _input(event: InputEvent):
 		shockwave.set_shader_parameter("center", screenspace_player_pos)
 		$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")
 		gameInstance.timeshift.emit("Rewind", -2)
-		self.full_rewindrewind = true	
+		self.full_rewind = true	
 		
 	if event.is_action_released("Full_Rewind") :
 		gameInstance.timeshift.emit("Resume", 1)
 		self.full_rewind = false
 	if event.is_action_released("Rewind") :
 		gameInstance.timeshift.emit("Resume", 1)
-		self.rewind = false
+		#self.rewind = false
 	if event.is_action_released("Time") :
 		paused = false
 		gameInstance.timeshift.emit("Resume", 1)
