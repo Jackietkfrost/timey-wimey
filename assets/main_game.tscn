@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dl8n5j61pw6nq"]
+[gd_scene load_steps=8 format=4 uid="uid://dl8n5j61pw6nq"]
 
 [ext_resource type="Script" uid="uid://dkks0whtdkjdt" path="res://scripts/main.gd" id="1_1oxwr"]
 [ext_resource type="TileSet" uid="uid://clhnlvcyj7sf" path="res://assets/tiles/map_tileset.tres" id="1_rd7um"]
@@ -9,7 +9,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_b04fv"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -295, 99, 0, 0, 0, 0, -225, 101)
+"points": PackedVector2Array(0, 0, 0, 0, -295, 99, 0, 0, 0, 0, -225, 99)
 }
 point_count = 2
 
@@ -28,7 +28,7 @@ position = Vector2(361, 415)
 curve = SubResource("Curve2D_b04fv")
 
 [node name="Key" parent="." instance=ExtResource("5_51q1l")]
-position = Vector2(76, 570)
+position = Vector2(76, 572)
 
 [node name="Door" parent="." instance=ExtResource("6_mqvp3")]
 position = Vector2(132, 568)
