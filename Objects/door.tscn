@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dixqwnl3kd180"]
+[gd_scene load_steps=15 format=3 uid="uid://dixqwnl3kd180"]
 
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_5xojw"]
 [ext_resource type="Script" uid="uid://docvk8vgynxh" path="res://scripts/door.gd" id="1_vkudc"]
+[ext_resource type="Texture2D" uid="uid://dnnkbxa7x761x" path="res://assets/icons/prompts/E_Prompt.png" id="3_2fpl1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_br4xv"]
 
@@ -42,6 +43,49 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6phg8"]
+atlas = ExtResource("3_2fpl1")
+region = Rect2(0, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc2a2"]
+atlas = ExtResource("3_2fpl1")
+region = Rect2(23, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onmhv"]
+atlas = ExtResource("3_2fpl1")
+region = Rect2(46, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6hdd"]
+atlas = ExtResource("3_2fpl1")
+region = Rect2(69, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igb2v"]
+atlas = ExtResource("3_2fpl1")
+region = Rect2(92, 0, 23, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j22j0"]
+animations = [{
+"frames": [{
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_6phg8")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_fc2a2")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_onmhv")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_b6hdd")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_igb2v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Door" type="Area2D"]
 script = ExtResource("1_vkudc")
 
@@ -51,6 +95,12 @@ shape = SubResource("RectangleShape2D_br4xv")
 [node name="DoorSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6phg8")
 animation = &"door_open"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(1, -28)
+sprite_frames = SubResource("SpriteFrames_j22j0")
+frame_progress = 0.657033
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

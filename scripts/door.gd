@@ -1,8 +1,13 @@
 extends Area2D
 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 var isInteractable: bool = false
 var player: Player
 var doorOpen: bool = false
+
+func _ready() -> void:
+	sprite.play("default")
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Interact") && isInteractable && player:
@@ -23,10 +28,12 @@ func _process(_delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player = body
+		sprite.visible = true
 		isInteractable = true
 	pass # Replace with function body.
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
+		sprite.visible = false
 		isInteractable = false
 	pass # Replace with function body.
