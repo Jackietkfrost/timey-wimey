@@ -10,9 +10,14 @@ func _process(_delta: float) -> void:
 			doorOpen = true
 			$DoorSprite.play("door_open")
 		elif doorOpen:
-			if get_tree().get_current_scene().get_name() == "Game":
-				get_tree().change_scene_to_file("res://levels/level_2.tscn")
-			else: #^COPY THAT, REPLACE if's   == "[INSERT_NEXTLEVEL_NAME]" do that below here 
+
+			if get_tree().get_current_scene().get_name() == "Level 1":
+				get_tree().change_scene_to_file("uid://cywhrka4sqcxv") #Level2
+			elif get_tree().get_current_scene().get_name() == "Level2": #^COPY THAT, REPLACE if's   == "[INSERT_NEXTLEVEL_NAME]" do that below here 
+				get_tree().change_scene_to_file("uid://fdiuab7kqqpa") #Level3
+			elif get_tree().get_current_scene().get_name() == "Level3":
+				get_tree().quit() #Quit lol
+			else:
 				print(get_tree().get_current_scene().get_name())
 		pass
 

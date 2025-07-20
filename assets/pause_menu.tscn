@@ -122,6 +122,10 @@ text = "Options (Audio)"
 layout_mode = 2
 text = "Restart"
 
+[node name="Return2MainMenu" type="Button" parent="PauseMenu/PausePanelContainer/PauseMenu"]
+layout_mode = 2
+text = "Return To Main Menu"
+
 [node name="QuitButton" type="Button" parent="PauseMenu/PausePanelContainer/PauseMenu"]
 layout_mode = 2
 text = "Quit"
@@ -195,6 +199,7 @@ text = "Back"
 [connection signal="pressed" from="PauseMenu/PausePanelContainer/PauseMenu/ResumeButton" to="PauseMenu" method="_on_resume_bttn_pressed"]
 [connection signal="pressed" from="PauseMenu/PausePanelContainer/PauseMenu/OptionsButton" to="PauseMenu" method="_on_options_button_pressed"]
 [connection signal="pressed" from="PauseMenu/PausePanelContainer/PauseMenu/RestartButton" to="PauseMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PauseMenu/PausePanelContainer/PauseMenu/Return2MainMenu" to="PauseMenu" method="_on_return_2_main_menu_pressed"]
 [connection signal="pressed" from="PauseMenu/PausePanelContainer/PauseMenu/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="PauseMenu/AudioMenuPanel/AudioPanel/MasterSlider" to="PauseMenu" method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="PauseMenu/AudioMenuPanel/AudioPanel/MusicSlider" to="PauseMenu" method="_on_music_slider_value_changed"]
