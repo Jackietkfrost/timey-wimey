@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://8g1p8dk7vlpo"]
+[gd_scene load_steps=13 format=3 uid="uid://8g1p8dk7vlpo"]
 
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_psfmd"]
+[ext_resource type="Texture2D" uid="uid://b63ggo6arapxd" path="res://assets/animations/wind_animation.png" id="2_3g2r8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3g2r8"]
 atlas = ExtResource("1_psfmd")
@@ -24,8 +25,71 @@ animations = [{
 "speed": 14.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70f2c"]
+size = Vector2(49, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84rcl"]
+atlas = ExtResource("2_3g2r8")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emj7n"]
+atlas = ExtResource("2_3g2r8")
+region = Rect2(48, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv764"]
+atlas = ExtResource("2_3g2r8")
+region = Rect2(96, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvuy5"]
+atlas = ExtResource("2_3g2r8")
+region = Rect2(144, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rivn3"]
+atlas = ExtResource("2_3g2r8")
+region = Rect2(192, 0, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rrr3w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84rcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emj7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv764")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvuy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rivn3")
+}],
+"loop": true,
+"name": &"blow_wind",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Fan" type="Node2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Fan" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_84rcl")
-frame_progress = 0.306272
+frame_progress = 0.821409
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(31.5, 0)
+shape = SubResource("RectangleShape2D_70f2c")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(31, 0)
+sprite_frames = SubResource("SpriteFrames_rrr3w")
+animation = &"blow_wind"
+autoplay = "default"
