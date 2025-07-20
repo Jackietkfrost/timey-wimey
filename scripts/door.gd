@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 			$DoorSprite.play("door_open")
 		elif doorOpen:
 			if get_tree().get_current_scene().get_name() == "Game":
-				get_tree().change_scene_to_file("res://assets/level_2.tscn")
+				get_tree().change_scene_to_file("res://levels/level_2.tscn")
 			else: #^COPY THAT, REPLACE if's   == "[INSERT_NEXTLEVEL_NAME]" do that below here 
 				print(get_tree().get_current_scene().get_name())
 		pass
