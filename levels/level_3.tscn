@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://fdiuab7kqqpa"]
+[gd_scene load_steps=17 format=4 uid="uid://fdiuab7kqqpa"]
 
 [ext_resource type="Script" uid="uid://dkks0whtdkjdt" path="res://scripts/main.gd" id="1_lfnxh"]
 [ext_resource type="TileSet" uid="uid://clhnlvcyj7sf" path="res://assets/tiles/map_tileset.tres" id="2_ofchu"]
@@ -21,6 +21,18 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 150, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_0unm6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 73, 0, 0, 0, 0, 0, 73, -120, 0, 0, 0, 0, 139, -120, 0, 0, 0, 0, 73, -120, 0, 0, 0, 0, 73, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_q42ux"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -100, 0, 0, 0, 0, -103, -100, 0, 0, 0, 0, -102, 0, 0, 0, 0, 0, -1, 0)
+}
+point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_jq78i"]
 _data = {
@@ -50,18 +62,6 @@ tile_set = ExtResource("2_ofchu")
 [node name="Player" parent="." instance=ExtResource("3_jq78i")]
 position = Vector2(232, -353)
 
-[node name="JumpPad1" parent="." instance=ExtResource("4_lsnkt")]
-position = Vector2(376, 393)
-
-[node name="JumpPad2" parent="." instance=ExtResource("4_lsnkt")]
-position = Vector2(328, 361)
-
-[node name="JumpPad3" parent="." instance=ExtResource("4_lsnkt")]
-position = Vector2(264, 345)
-
-[node name="JumpPad4" parent="." instance=ExtResource("4_lsnkt")]
-position = Vector2(216, 345)
-
 [node name="Key" parent="." instance=ExtResource("5_wj73x")]
 position = Vector2(256, 220)
 
@@ -76,91 +76,126 @@ curve = SubResource("Curve2D_7j8ne")
 position = Vector2(255, 447)
 curve = SubResource("Curve2D_0s5r2")
 
-[node name="Enemy" parent="." instance=ExtResource("8_ofchu")]
+[node name="Pads" type="Node" parent="."]
+
+[node name="JumpPad1" parent="Pads" instance=ExtResource("4_lsnkt")]
+position = Vector2(376, 393)
+
+[node name="JumpPad2" parent="Pads" instance=ExtResource("4_lsnkt")]
+position = Vector2(328, 361)
+
+[node name="JumpPad3" parent="Pads" instance=ExtResource("4_lsnkt")]
+position = Vector2(264, 345)
+
+[node name="JumpPad4" parent="Pads" instance=ExtResource("4_lsnkt")]
+position = Vector2(216, 345)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Flying Enemies" type="Node" parent="Enemies"]
+
+[node name="Enemy4" parent="Enemies/Flying Enemies" instance=ExtResource("8_ofchu")]
+position = Vector2(21, 646)
+curve = SubResource("Curve2D_0unm6")
+isFlying = true
+
+[node name="Enemy5" parent="Enemies/Flying Enemies" instance=ExtResource("8_ofchu")]
+position = Vector2(399, 638)
+curve = SubResource("Curve2D_q42ux")
+isFlying = true
+
+[node name="Enemy6" parent="Enemies/Flying Enemies" instance=ExtResource("8_ofchu")]
+position = Vector2(408, 423)
+curve = SubResource("Curve2D_q42ux")
+isFlying = true
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("8_ofchu")]
 position = Vector2(-39, 776)
 curve = SubResource("Curve2D_jq78i")
 runSpeed = 1.0
 
-[node name="Enemy2" parent="." instance=ExtResource("8_ofchu")]
+[node name="Enemy2" parent="Enemies" instance=ExtResource("8_ofchu")]
 position = Vector2(515, 776)
 curve = SubResource("Curve2D_lsnkt")
 runSpeed = 1.0
 
-[node name="Enemy3" parent="." instance=ExtResource("8_ofchu")]
+[node name="Enemy3" parent="Enemies" instance=ExtResource("8_ofchu")]
 position = Vector2(216, 776)
 curve = SubResource("Curve2D_wj73x")
 runSpeed = 1.0
 
-[node name="Point" parent="." instance=ExtResource("9_jq78i")]
+[node name="Points" type="Node" parent="."]
+
+[node name="Point" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(56, 584)
 
-[node name="Point2" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point2" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(120, 584)
 
-[node name="Point3" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point3" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(168, 584)
 
-[node name="Point4" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point4" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(232, 584)
 
-[node name="Point5" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point5" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(328, 584)
 
-[node name="Point6" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point6" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(360, 584)
 
-[node name="Point7" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point7" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(440, 584)
 
-[node name="Point8" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point8" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(376, 376)
 
-[node name="Point9" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point9" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(328, 344)
 
-[node name="Point10" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point10" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(264, 328)
 
-[node name="Point11" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point11" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(216, 328)
 
-[node name="Point12" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point12" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(136, 344)
 
-[node name="Point13" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point13" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(24, 376)
 
-[node name="Point14" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point14" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(40, 296)
 
-[node name="Point15" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point15" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(264, 120)
 
-[node name="Point16" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point16" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(488, 160)
 
-[node name="Point17" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point17" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(472, 176)
 
-[node name="Point18" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point18" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(360, 168)
 
-[node name="Point19" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point19" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(200, 168)
 
-[node name="Point20" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point20" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(24, 160)
 
-[node name="Point21" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point21" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(88, 176)
 
-[node name="Point22" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point22" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(136, 168)
 
-[node name="Point23" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point23" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(664, 520)
 
-[node name="Point24" parent="." instance=ExtResource("9_jq78i")]
+[node name="Point24" parent="Points" instance=ExtResource("9_jq78i")]
 position = Vector2(256, 432)
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
