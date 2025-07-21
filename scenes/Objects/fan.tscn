@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://8g1p8dk7vlpo"]
 
-[ext_resource type="Script" uid="uid://8ycm0bbgyjcy" path="res://scripts/fan.gd" id="1_70f2c"]
+[ext_resource type="Script" uid="uid://8ycm0bbgyjcy" path="res://scripts/objects/fan.gd" id="1_70f2c"]
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_psfmd"]
 [ext_resource type="Texture2D" uid="uid://b63ggo6arapxd" path="res://assets/animations/wind_animation.png" id="2_3g2r8"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://ywjpdoaeuhju"]
 
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_526ql"]
-[ext_resource type="Script" uid="uid://dq6011mdwfty" path="res://scripts/jump_pad.gd" id="1_o4t0g"]
+[ext_resource type="Script" uid="uid://dq6011mdwfty" path="res://scripts/objects/jump_pad.gd" id="1_o4t0g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cysje"]
 atlas = ExtResource("1_526ql")

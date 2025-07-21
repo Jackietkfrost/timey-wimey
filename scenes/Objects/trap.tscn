@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cd7u0y43h3cxg"]
 
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_3w8vf"]
-[ext_resource type="Script" uid="uid://prg17d4lbna7" path="res://scripts/trap.gd" id="1_fwotp"]
+[ext_resource type="Script" uid="uid://prg17d4lbna7" path="res://scripts/objects/trap.gd" id="1_fwotp"]
 [ext_resource type="Texture2D" uid="uid://q55tba46dt05" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent_packed.png" id="2_7222y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1dq4"]

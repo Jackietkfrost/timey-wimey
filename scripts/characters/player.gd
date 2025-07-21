@@ -40,6 +40,7 @@ func _physics_process(_delta):
 		rewind = false
 		rewind_self = false
 		gameInstance.timeshift.emit("Resume", 1)
+		$Camera2D/CanvasLayer/CRT.visible = false
 	elif (position_history_full.is_empty() && position_history.is_empty() && full_rewind):
 		full_rewind = false
 		rewind_self = false
@@ -113,37 +114,38 @@ func _physics_process(_delta):
 		move_and_slide()
 
 func _input(event: InputEvent):
-	if event.is_action_pressed("Time"):
-		_shockwave_effect("shockwave")
-		timescale = 0
-		gameInstance.timeshift.emit("Pause", 0)
+	if not died:
+		if event.is_action_pressed("Time"):
+			_shockwave_effect("shockwave")
+			timescale = 0
+			gameInstance.timeshift.emit("Pause", 0)
 
-	if event.is_action_pressed("Rewind"):
-		_shockwave_effect("shockwave")
-		timescale = -1
-		gameInstance.timeshift.emit("Rewind", -1)
+		if event.is_action_pressed("Rewind"):
+			_shockwave_effect("shockwave")
+			timescale = -1
+			gameInstance.timeshift.emit("Rewind", -1)
+				
+		if event.is_action_pressed("Player_Rewind") && (rewindDuration * 60 == position_history.size()):
+			timescale = -2
+			gameInstance.timeshift.emit("Rewind", -2)
+			rewind = true
+			rewind_self = true
 			
-	if event.is_action_pressed("Player_Rewind") && (rewindDuration * 60 == position_history.size()):
-		timescale = -2
-		gameInstance.timeshift.emit("Rewind", -2)
-		rewind = true
-		rewind_self = true
-		
-	if event.is_action_released("Full_Rewind"):
-		gameInstance.timeshift.emit("Resume", 1)
-		timescale = 1
-		self.full_rewind = false
-		rewind_self = false
-		
-	if event.is_action_released("Rewind") && timescale == -1:
-		gameInstance.timeshift.emit("Resume", 1)
-		timescale = 1
-		
-	if event.is_action_released("Time") && timescale == 0:
-		_shockwave_effect("shockwave-end")
-		paused = false
-		gameInstance.timeshift.emit("Resume", 1)
-		timescale = 1
+		if event.is_action_released("Full_Rewind"):
+			gameInstance.timeshift.emit("Resume", 1)
+			timescale = 1
+			self.full_rewind = false
+			rewind_self = false
+			
+		if event.is_action_released("Rewind") && timescale == -1:
+			gameInstance.timeshift.emit("Resume", 1)
+			timescale = 1
+			
+		if event.is_action_released("Time") && timescale == 0:
+			_shockwave_effect("shockwave-end")
+			paused = false
+			gameInstance.timeshift.emit("Resume", 1)
+			timescale = 1
 		
 func _on_player_rewinded(playerDied: bool) -> void:
 	gameInstance.timeshift.emit("Pause", 0)

@@ -14,6 +14,7 @@ func _play_music(music: AudioStream, volume: float = 0.0):
 		
 ## Plays the game's level music
 func play_music_level(vol = 0.0):
+	self.bus = "Music"
 	_play_music(level_music, vol)
 
 

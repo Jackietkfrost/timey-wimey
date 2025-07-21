@@ -1,7 +1,8 @@
 extends Control
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-@onready var pause_menu: PanelContainer = $PausePanelContainer
+@onready var pause_container: PanelContainer = $PausePanelContainer
+@onready var pause_menu: CanvasLayer = $".."
 @onready var audio_panel: PanelContainer = $AudioMenuPanel
 @onready var Master_BUS_ID = AudioServer.get_bus_index("Master")
 @onready var Music_BUS_ID = AudioServer.get_bus_index("Music")
@@ -65,6 +66,7 @@ func _on_sfx_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_mute(SFX_BUS_ID, value < .05)
 	pass # Replace with function body.
 
+#pause_menu.visible = true
 
 func hide_all_menus():
 	pause_menu.visible = false
