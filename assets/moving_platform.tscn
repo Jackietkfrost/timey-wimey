@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://btibsxabxfxhr"]
 
-[ext_resource type="Script" uid="uid://dm0178utf310p" path="res://scripts/moving_platform.gd" id="1_v1hip"]
+[ext_resource type="Script" uid="uid://dm0178utf310p" path="res://scripts/objects/moving_platform.gd" id="1_v1hip"]
 [ext_resource type="Texture2D" uid="uid://q55tba46dt05" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent_packed.png" id="2_v1hip"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oxwr"]
