@@ -1,6 +1,6 @@
 class_name Fan extends Node2D
 
-signal fan_timeshift(timeshift_type: String, timescale_new: int)
+signal timeshift(timescale_new: float)
 
 @onready var gust: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fan: AnimatedSprite2D = $Fan
@@ -17,7 +17,7 @@ func _on_entered_gust(body: Node2D) -> void:
 	if body is Player:	
 		is_touching = true
 		player_ref = body
-		if (!player_ref.rewind_self) :
+		if (!player_ref.is_rewinding_self) :
 			is_exerting = true
 			player_ref.velocity_modifier += pushback_strength * timescale
 
@@ -34,7 +34,7 @@ func _ready() :
 	gust.play("blow_wind")
 	fan.play("default")
 
-func _on_fan_timeshift(_timeshift_type: String, timescale_new: int) -> void:
+func _on_timeshift(timescale_new: float) -> void:
 	if (timescale_new != 0 && timescale == 0 ) : #game unpaused
 		gust.visible = true
 	elif (timescale_new == 0 && timescale != 0): #game paused
