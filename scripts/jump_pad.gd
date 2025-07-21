@@ -9,4 +9,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var jumpDirection = -1 if sprite_2d.flip_h else 1
 		body.velocity = Vector2(jumpDistance * jumpDirection, -jumpHeight)
 		sprite_2d.play("default")
-	print("Object collided!" + str(body))
+		AudioPlayer.play_FX(preload("uid://qlfclh1xt220"))
