@@ -45,7 +45,7 @@ func _on_timeshift(timescale_new: float) -> void:
 			player_ref.velocity_modifier -= pushback_strength * timescale
 			is_exerting = false
 			
-		if ( !player_ref.rewind_self ) :
+		if ( !player_ref.is_rewinding_self ) :
 			player_ref.velocity_modifier += pushback_strength * timescale_new
 			is_exerting = true
 		
