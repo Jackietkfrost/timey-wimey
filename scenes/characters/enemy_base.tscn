@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://sk16xc8lf2rx"]
+[gd_scene load_steps=16 format=3 uid="uid://sk16xc8lf2rx"]
 
 [ext_resource type="Texture2D" uid="uid://q55tba46dt05" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent_packed.png" id="1_8e4qo"]
 [ext_resource type="Script" uid="uid://m8megs4jglhb" path="res://scripts/characters/enemy_base.gd" id="1_ldf1s"]
@@ -19,9 +19,9 @@ region = Rect2(48, 256, 16, 16)
 atlas = ExtResource("1_8e4qo")
 region = Rect2(64, 256, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tv848"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tvau"]
 atlas = ExtResource("3_kw7eg")
-region = Rect2(17, 323, 16, 16)
+region = Rect2(51, 323, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bufwv"]
 atlas = ExtResource("3_kw7eg")
@@ -30,6 +30,10 @@ region = Rect2(34, 323, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_edms4"]
 atlas = ExtResource("3_kw7eg")
 region = Rect2(51, 323, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_435pf"]
+atlas = ExtResource("3_kw7eg")
+region = Rect2(68, 323, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o8hxk"]
 atlas = ExtResource("1_8e4qo")
@@ -62,7 +66,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tv848")
+"texture": SubResource("AtlasTexture_0tvau")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bufwv")
@@ -74,6 +78,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_edms4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_435pf")
 }],
 "loop": true,
 "name": &"fly_die",
@@ -109,7 +116,7 @@ shape = SubResource("RectangleShape2D_ldf1s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D/Enemy"]
 sprite_frames = SubResource("SpriteFrames_s22ri")
-animation = &"die"
+animation = &"walk"
 autoplay = "default"
 
 [node name="kill_zone" type="Area2D" parent="PathFollow2D/Enemy"]
