@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_psfmd"]
 [ext_resource type="Texture2D" uid="uid://b63ggo6arapxd" path="res://assets/animations/wind_animation.png" id="2_3g2r8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3g2r8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_377o8"]
 atlas = ExtResource("1_psfmd")
-region = Rect2(170, 289, 16, 16)
+region = Rect2(204, 289, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_70f2c"]
 atlas = ExtResource("1_psfmd")
@@ -16,7 +16,7 @@ region = Rect2(187, 289, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3g2r8")
+"texture": SubResource("AtlasTexture_377o8")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_70f2c")
