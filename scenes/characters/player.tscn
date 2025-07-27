@@ -30,10 +30,6 @@ region = Rect2(17, 204, 16, 16)
 atlas = ExtResource("1_674bt")
 region = Rect2(34, 204, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rug40"]
-atlas = ExtResource("1_674bt")
-region = Rect2(34, 204, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_uovkd"]
 atlas = ExtResource("1_674bt")
 region = Rect2(51, 204, 16, 16)
@@ -41,6 +37,10 @@ region = Rect2(51, 204, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_insbl"]
 atlas = ExtResource("1_674bt")
 region = Rect2(68, 204, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l4js"]
+atlas = ExtResource("1_674bt")
+region = Rect2(85, 204, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6eyoc"]
 atlas = ExtResource("1_674bt")
@@ -83,13 +83,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rug40")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_uovkd")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_insbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l4js")
 }],
 "loop": true,
 "name": &"walk",
@@ -191,7 +191,7 @@ script = ExtResource("1_3mip4")
 [node name="Body" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_nsdob")
-animation = &"die"
+animation = &"wall_hang"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
