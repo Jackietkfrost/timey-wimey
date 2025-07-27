@@ -59,10 +59,12 @@ func _physics_process(_delta):
 		#Ignores gravity when affected by fans or when jumping
 		elif velocity_modifier.y == 0 || last_jump == "None":
 			if is_on_wall_only() && last_jump != "Up": #Wall slide	
+				sprite.play("wall_hang")
 				velocity.y += gravity/4
 				if velocity.y > max_fall_speed/2:
 					velocity.y = max_fall_speed/2
 			else:	
+				sprite.play("fall")
 				velocity.y += gravity
 				if velocity.y > max_fall_speed:
 					velocity.y = max_fall_speed
@@ -179,12 +181,12 @@ func _save_player_history(player_position: Vector2, player_animation : float, ti
 	
 func _set_sprite_direction (horizontal_direction : float) -> void :
 		if (horizontal_direction > 0):
-			$Body.flip_h = false
+			sprite.flip_h = false
 		elif (horizontal_direction < 0):
-			$Body.flip_h = true
-			$Body.play("walk")
+			sprite.flip_h = true
+			sprite.play("walk")
 		elif (horizontal_direction == 0):
-			$Body.play("idle")
+			sprite.play("idle")
 
 func _jump_function() -> void:
 	var touching_left : bool = self.test_move(transform, Vector2 (-2, 0))
