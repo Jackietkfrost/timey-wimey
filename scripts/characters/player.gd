@@ -8,7 +8,7 @@ signal player_rewinded(died: bool)
 @export var max_horizontal_speed: float = 100
 @export var max_fall_speed: float = 200
 @export var jump_force: float = 400
-@export var side_jump_force: float = 350
+@export var side_jump_force: Vector2 = Vector2 (150, -400)
 @export var hasKey: bool = false
 @export var rewindDuration: float = 3.0
 @export var velocity_modifier: Vector2 = Vector2(0, 0)
@@ -37,7 +37,7 @@ var is_rewinding_self : bool = false
 var rewind_counter : int = 0
 
 var last_jump : String = "None"
-var wall_touched : int = 60
+var is_wall_slidding : bool = false
 
 func _on_entered_game(game_ref: Node2D) -> void:
 	gameInstance = game_ref
@@ -52,30 +52,23 @@ func _physics_process(_delta):
 		
 	#if player isn't rewinding himself or dead
 	elif not died:
-		if is_on_floor() : #Reset jump for walljump
-			last_jump = "None"
-			
-
-		#Ignores gravity when affected by fans or when jumping
-		elif velocity_modifier.y == 0 || last_jump == "None":
-			if is_on_wall_only() && last_jump != "Up": #Wall slide	
-				sprite.play("wall_hang")
-				velocity.y += gravity/4
-				if velocity.y > max_fall_speed/2:
-					velocity.y = max_fall_speed/2
-			else:	
-				sprite.play("fall")
-				velocity.y += gravity
-				if velocity.y > max_fall_speed:
-					velocity.y = max_fall_speed
-		
 		var horizontal_direction: float = Input.get_axis("Move Left", "Move Right")
 		
-		#ignore left right input for walljump
-		if (last_jump != "Left" && last_jump != "Right") :
-			velocity.x = (speed * horizontal_direction) + velocity_modifier.x
+		#Reset Jump state for walljump
+		# velocity.y > 0 && is_on_wall() : resets jump state from "Up" to "None" if player does standing jump ah
+		if is_on_floor() || ( velocity.y > 0 ):
+			last_jump = "None"
 		
-		_set_sprite_direction(horizontal_direction)
+		#Ignore movement input after walljump
+		if (last_jump != "Left" && last_jump != "Right") :
+			if horizontal_direction == 0 && !is_on_floor():
+				pass
+			else :
+				velocity.x = (speed * horizontal_direction) + velocity_modifier.x
+			
+		_apply_gravity()
+		
+		_set_sprite(horizontal_direction)
 		_save_player_history(position, horizontal_direction, -timescale)
 		move_and_slide()
 
@@ -165,7 +158,7 @@ func _rewind_player() -> void :
 		if !history.is_empty():
 			var temp = history.pop_back()
 			rewind_counter += 1
-			_set_sprite_direction(temp.sprite_direction)				
+			_set_sprite(temp.sprite_direction)				
 			position = temp.location
 			gameInstance.timeshift.emit(-temp.timescale * rewind_speed)
 			timescale= temp.timescale
@@ -179,18 +172,31 @@ func _save_player_history(player_position: Vector2, player_animation : float, ti
 	if rewind_counter >= 0 :
 		rewind_counter -= 1
 	
-func _set_sprite_direction (horizontal_direction : float) -> void :
+func _set_sprite (horizontal_direction : float) -> void :
+	#If Character is on floor, set character to walking animations
+	if is_on_floor() :
+		sprite.play("walk")
 		if (horizontal_direction > 0):
 			sprite.flip_h = false
 		elif (horizontal_direction < 0):
 			sprite.flip_h = true
-			sprite.play("walk")
 		elif (horizontal_direction == 0):
 			sprite.play("idle")
-
+	else:
+		var touching_left : bool = self.test_move(transform, Vector2 (-2, 0))
+		var touching_right : bool = self.test_move(transform, Vector2 (2, 0))
+		
+		#Set to wall hang sprite if touching left or right wall
+		if touching_left :
+			sprite.play("wall_hang")
+			sprite.flip_h = true
+		elif touching_right :
+			sprite.play("wall_hang")
+			sprite.flip_h = false
+		
 func _jump_function() -> void:
-	var touching_left : bool = self.test_move(transform, Vector2 (-2, 0))
-	var touching_right : bool = self.test_move(transform, Vector2 (2, 0))
+	var touching_left : bool = self.test_move(transform, Vector2 (-5, 0))
+	var touching_right : bool = self.test_move(transform, Vector2 (5, 0))
 	
 	if is_on_floor():
 		last_jump = "Up"
@@ -199,9 +205,24 @@ func _jump_function() -> void:
 		move_and_slide()
 	elif touching_left && last_jump != "Left":
 		last_jump = "Left"
-		velocity = Vector2 ( side_jump_force/2, -side_jump_force )
+		velocity = Vector2 ( side_jump_force.x, side_jump_force.y )
 		move_and_slide()
 	elif touching_right && last_jump != "Right":	
 		last_jump = "Right"
-		velocity = Vector2 ( -side_jump_force/2, -side_jump_force )	
+		velocity = Vector2 ( -side_jump_force.x, side_jump_force.y )	
 		move_and_slide()
+
+func _apply_gravity() -> void:
+		#Ignores gravity when affected by fans or when jumping
+		if velocity_modifier.y == 0 || last_jump == "None":
+			if is_on_wall_only() && last_jump != "Up": #Wall slide	
+				sprite.play("wall_hang")
+				velocity.y += gravity/8
+				if velocity.y > max_fall_speed/3:
+					velocity.y = max_fall_speed/3
+			else:	
+				sprite.play("fall")
+				velocity.y += gravity
+				if velocity.y > max_fall_speed:
+					velocity.y = max_fall_speed
+	
