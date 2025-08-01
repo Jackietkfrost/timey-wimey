@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfskcc5ogdwsp"]
+[gd_scene load_steps=3 format=3 uid="uid://cfskcc5ogdwsp"]
 
 [ext_resource type="Script" uid="uid://dygovx2d8g7wq" path="res://scripts/ui/main_menu.gd" id="1_sl1te"]
+[ext_resource type="Theme" uid="uid://b2xjpq2xdktkd" path="res://default_theme.tres" id="2_fe2o3"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -18,9 +19,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_fe2o3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenuPanel"]
 layout_mode = 2
+size_flags_vertical = 4
 
 [node name="StartGameButton" type="Button" parent="MainMenuPanel/VBoxContainer"]
 layout_mode = 2

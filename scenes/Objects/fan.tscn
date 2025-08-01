@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b63ggo6arapxd" path="res://assets/animations/wind_animation.png" id="2_3g2r8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_377o8"]
-size = Vector2(14, 14)
+size = Vector2(8, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_377o8"]
 atlas = ExtResource("1_psfmd")
@@ -86,6 +86,7 @@ script = ExtResource("1_70f2c")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-3, 0)
 shape = SubResource("RectangleShape2D_377o8")
 
 [node name="Fan" type="AnimatedSprite2D" parent="."]
