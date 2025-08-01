@@ -18,13 +18,13 @@ region = Rect2(23, 0, 23, 23)
 atlas = ExtResource("3_63mlb")
 region = Rect2(46, 0, 23, 23)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oede5"]
-atlas = ExtResource("3_63mlb")
-region = Rect2(69, 0, 23, 23)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_dp1xj"]
 atlas = ExtResource("3_63mlb")
 region = Rect2(92, 0, 23, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oede5"]
+atlas = ExtResource("3_63mlb")
+region = Rect2(69, 0, 23, 23)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ly8d"]
 animations = [{
@@ -38,11 +38,11 @@ animations = [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_dydmr")
 }, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_oede5")
-}, {
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_dp1xj")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_oede5")
 }],
 "loop": true,
 "name": &"e_prompt",
@@ -58,7 +58,7 @@ shape = SubResource("RectangleShape2D_63mlb")
 [node name="KeySprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_13sy0")
 region_enabled = true
-region_rect = Rect2(289, 68, 16, 16)
+region_rect = Rect2(306, 68, 16, 16)
 
 [node name="Prompt" type="AnimatedSprite2D" parent="."]
 visible = false

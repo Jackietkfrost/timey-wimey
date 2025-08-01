@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://8g1p8dk7vlpo"]
+[gd_scene load_steps=15 format=3 uid="uid://8g1p8dk7vlpo"]
 
 [ext_resource type="Script" uid="uid://8ycm0bbgyjcy" path="res://scripts/objects/fan.gd" id="1_70f2c"]
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_psfmd"]
 [ext_resource type="Texture2D" uid="uid://b63ggo6arapxd" path="res://assets/animations/wind_animation.png" id="2_3g2r8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_377o8"]
+size = Vector2(14, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_377o8"]
 atlas = ExtResource("1_psfmd")
@@ -27,7 +30,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70f2c"]
-size = Vector2(49, 20)
+size = Vector2(55, 11)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_84rcl"]
 atlas = ExtResource("2_3g2r8")
@@ -80,6 +83,11 @@ animations = [{
 [node name="Fan" type="Node2D"]
 script = ExtResource("1_70f2c")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_377o8")
+
 [node name="Fan" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_84rcl")
 frame_progress = 0.821409
@@ -87,7 +95,7 @@ frame_progress = 0.821409
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(31.5, 0)
+position = Vector2(28.5, -0.5)
 shape = SubResource("RectangleShape2D_70f2c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
