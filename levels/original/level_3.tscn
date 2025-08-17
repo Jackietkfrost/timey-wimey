@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=4 uid="uid://fdiuab7kqqpa"]
 
-[ext_resource type="Script" uid="uid://dkks0whtdkjdt" path="res://scripts/main.gd" id="1_eog6p"]
+[ext_resource type="Script" uid="uid://dkks0whtdkjdt" path="res://scripts/LevelManager.gd" id="1_eog6p"]
 [ext_resource type="TileSet" uid="uid://clhnlvcyj7sf" path="res://assets/tiles/map_tileset.tres" id="2_xikr7"]
 [ext_resource type="PackedScene" uid="uid://cyprehki1hi4w" path="res://scenes/characters/player.tscn" id="3_3psb0"]
 [ext_resource type="PackedScene" uid="uid://dlp72elqtg7ba" path="res://scenes/Objects/key.tscn" id="4_8vyxb"]
@@ -97,17 +97,14 @@ position = Vector2(216, 345)
 [node name="Enemy4" parent="Enemies/Flying Enemies" instance=ExtResource("8_l8ag2")]
 position = Vector2(21, 646)
 curve = SubResource("Curve2D_0unm6")
-isFlying = true
 
 [node name="Enemy5" parent="Enemies/Flying Enemies" instance=ExtResource("8_l8ag2")]
 position = Vector2(399, 638)
 curve = SubResource("Curve2D_q42ux")
-isFlying = true
 
 [node name="Enemy6" parent="Enemies/Flying Enemies" instance=ExtResource("8_l8ag2")]
 position = Vector2(408, 423)
 curve = SubResource("Curve2D_q42ux")
-isFlying = true
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("8_l8ag2")]
 position = Vector2(-39, 776)
