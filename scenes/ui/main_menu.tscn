@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfskcc5ogdwsp"]
+[gd_scene load_steps=4 format=3 uid="uid://cfskcc5ogdwsp"]
 
 [ext_resource type="Script" uid="uid://dygovx2d8g7wq" path="res://scripts/ui/main_menu.gd" id="1_sl1te"]
 [ext_resource type="Theme" uid="uid://b2xjpq2xdktkd" path="res://default_theme.tres" id="2_fe2o3"]
+[ext_resource type="PackedScene" uid="uid://cbi2es3nhdclp" path="res://scene_transitioner.tscn" id="3_1g8jr"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -138,6 +139,9 @@ text = "Level
 [node name="BackFromLevelSelectButton" type="Button" parent="LevelGridPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 text = "Back"
+
+[node name="Scene_Transition" parent="." instance=ExtResource("3_1g8jr")]
+layout_mode = 1
 
 [connection signal="pressed" from="MainMenuPanel/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="MainMenuPanel/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
