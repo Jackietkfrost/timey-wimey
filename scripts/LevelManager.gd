@@ -1,4 +1,5 @@
-extends Node2D
+class_name LevelManager extends Node2D
+
 
 var player_ref : Node2D
 var moving_platform_ref : Array[MovingPlatforms] = []
@@ -9,8 +10,11 @@ var enemies_ref: Array[Enemy_Base] = []
 signal timeshift(timescale : float)
 
 func _ready() -> void:
+	
 	AudioPlayer.play_music_level()
 
+func manage_Children(node: Node) -> void:
+	_on_child_entered_tree(node)
 func _on_child_entered_tree(node: Node) -> void:
 	if node is Player:
 		player_ref = node
