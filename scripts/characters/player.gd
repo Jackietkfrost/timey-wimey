@@ -118,14 +118,12 @@ func _on_player_rewinded(playerDied: bool) -> void:
 	full_rewind = true
 	is_rewinding_self = true
 
-func _shockwave_effect(name: String) -> void:
+func _shockwave_effect(effect_name: String) -> void:
 	var shockwave: ShaderMaterial = $Camera2D/CanvasLayer/ColorRect.material
 	var screenspace_player_pos = viewport.get_canvas_transform() * self.position \
 	/ Vector2(viewport.size)
 	shockwave.set_shader_parameter("center", screenspace_player_pos)
-	$Camera2D/CanvasLayer/AnimationPlayer.play(name)
-	#shockwave.set_shader_parameter("center", screenspace_player_pos)
-	#$Camera2D/CanvasLayer/AnimationPlayer.play("shockwave-end")
+	$Camera2D/CanvasLayer/AnimationPlayer.play(effect_name)
 
 func _attempt_timeshift(new_timescale: float) -> void :
 	if new_timescale != timescale :
