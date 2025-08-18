@@ -4,13 +4,10 @@ extends LevelManager
 @onready var trans_player: AnimationPlayer = $Player/Scene_Transition/trans_player
 
 func _ready() -> void:
-	print("Ready Level One")
 	scene_transition.color.a = 255
 	scene_transition.visible = true
-	await get_tree().create_timer(5).timeout
-	trans_player.play("fade_out")
 	await get_tree().create_timer(1).timeout
-	print("Fade out done")
+	trans_player.play("fade_out")
 
 func _on_child_entered_game(node: Node) -> void:
 	manage_Children(node)

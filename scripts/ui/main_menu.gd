@@ -17,11 +17,13 @@ func _on_start_game_button_pressed() -> void:
 func _on_level_select_button_pressed() -> void:
 	scene_transition.play("fade_in")
 	await get_tree().create_timer(1).timeout
+	scene_transition.play("fade_out")
 	show_levelselect_menu()
 
 func _on_audio_button_pressed() -> void:
 	scene_transition.play("fade_in")
 	await get_tree().create_timer(1).timeout
+	scene_transition.play("fade_out")
 	show_audio_menu()
 
 
@@ -49,6 +51,7 @@ func _on_sfx_slider_value_changed(value: float) -> void:
 func _on_back_button_pressed() -> void:
 	scene_transition.play("fade_in")
 	await get_tree().create_timer(1).timeout
+	scene_transition.play("fade_out")
 	audio_menu_panel.visible = false
 	main_menu_panel.visible = true
 
@@ -64,6 +67,7 @@ func show_levelselect_menu():
 func _on_back_from_level_select_button_pressed() -> void:
 	scene_transition.play("fade_in")
 	await get_tree().create_timer(1).timeout
+	scene_transition.play("fade_out")
 	level_grid_panel.visible = false
 	main_menu_panel.visible = true
 
@@ -71,6 +75,7 @@ func _on_back_from_level_select_button_pressed() -> void:
 func _on_level_1_button_pressed() -> void:
 	scene_transition.play("fade_in")
 	await get_tree().create_timer(1).timeout
+	scene_transition.play("fade_out")
 	get_tree().change_scene_to_file("uid://dh5t46h13p0vc")
 
 
