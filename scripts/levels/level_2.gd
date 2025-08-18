@@ -6,8 +6,8 @@ extends LevelManager
 func _ready() -> void:
 	scene_transition.color.a = 255
 	scene_transition.visible = true
-	await get_tree().create_timer(1).timeout
 	trans_player.play("fade_out")
+	await get_tree().create_timer(1).timeout
 
 func _on_child_entered_game(node: Node) -> void:
 	manage_Children(node)
