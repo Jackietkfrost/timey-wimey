@@ -10,4 +10,5 @@ func _ready() -> void:
 	await get_tree().create_timer(1).timeout
 
 func _on_child_entered_game(node: Node) -> void:
-	manage_Children(node)
+	for child in node.get_children():
+		manage_Children(node)

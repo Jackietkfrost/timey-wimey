@@ -876,10 +876,6 @@ rotation = 3.14159
 [node name="Key" parent="." instance=ExtResource("8_4v5f1")]
 position = Vector2(1013, 348)
 
-[node name="Fan2" parent="." instance=ExtResource("7_og4b8")]
-position = Vector2(504, 344)
-rotation = 3.14159
-
 [node name="enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="enemies" instance=ExtResource("9_qovkd")]
@@ -940,6 +936,12 @@ position = Vector2(792, 344)
 
 [node name="Point9" parent="points" instance=ExtResource("10_fwyyc")]
 position = Vector2(872, 344)
+
+[node name="fans" type="Node" parent="."]
+
+[node name="Fan2" parent="fans" instance=ExtResource("7_og4b8")]
+position = Vector2(504, 344)
+rotation = 3.14159
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_game"]
 [connection signal="timeshift" from="." to="." method="_on_timeshift"]

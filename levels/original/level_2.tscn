@@ -163,15 +163,6 @@ position = Vector2(760, 556)
 [node name="Door" parent="." instance=ExtResource("6_ipyjl")]
 position = Vector2(520, 248)
 
-[node name="Fan" parent="." instance=ExtResource("9_8ovvt")]
-position = Vector2(520, 345)
-
-[node name="Fan2" parent="." instance=ExtResource("9_8ovvt")]
-position = Vector2(520, 313)
-
-[node name="Fan3" parent="." instance=ExtResource("9_8ovvt")]
-position = Vector2(520, 281)
-
 [node name="points" type="Node" parent="."]
 
 [node name="Point" parent="points" instance=ExtResource("10_y4d1l")]
@@ -241,6 +232,17 @@ curve = SubResource("Curve2D_wcjpl")
 
 [node name="MovingPlatform3" parent="platforms" instance=ExtResource("8_fcn0d")]
 position = Vector2(414, 569)
+
+[node name="fans" type="Node" parent="."]
+
+[node name="Fan" parent="fans" instance=ExtResource("9_8ovvt")]
+position = Vector2(520, 345)
+
+[node name="Fan2" parent="fans" instance=ExtResource("9_8ovvt")]
+position = Vector2(520, 313)
+
+[node name="Fan3" parent="fans" instance=ExtResource("9_8ovvt")]
+position = Vector2(520, 281)
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="timeshift" from="." to="." method="_on_timeshift"]
