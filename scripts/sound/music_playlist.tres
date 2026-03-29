@@ -1,0 +1,16 @@
+[gd_resource type="AudioStreamPlaylist" load_steps=6 format=3 uid="uid://dn2obdqxkyg5u"]
+
+[ext_resource type="AudioStream" uid="uid://igvime6g0jrt" path="res://assets/sounds/music/8-bit_nightmare - Tausdei-OpenGameArt.wav" id="1_ysnti"]
+[ext_resource type="AudioStream" uid="uid://f5mnxji1cwih" path="res://assets/sounds/music/completion_nes_2a03 - Alejoogg.ogg" id="2_1ugc0"]
+[ext_resource type="AudioStream" uid="uid://b0dlc20wkutnk" path="res://assets/sounds/music/Do Not Run.mp3" id="3_nqpvg"]
+[ext_resource type="AudioStream" uid="uid://drbs41l510xxg" path="res://assets/sounds/music/inarticulate - axtoncrolley-OpenGameArt.mp3" id="4_xtowy"]
+[ext_resource type="AudioStream" uid="uid://c821wspkanlpg" path="res://assets/sounds/music/Loop_1- SygilBatBoi-OpenGameArt.ogg" id="5_bu642"]
+
+[resource]
+shuffle = true
+stream_count = 5
+stream_0 = ExtResource("1_ysnti")
+stream_1 = ExtResource("2_1ugc0")
+stream_2 = ExtResource("3_nqpvg")
+stream_3 = ExtResource("4_xtowy")
+stream_4 = ExtResource("5_bu642")

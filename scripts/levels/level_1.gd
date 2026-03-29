@@ -4,13 +4,13 @@ extends LevelManager
 @onready var trans_player: AnimationPlayer = $Player/Scene_Transition/trans_player
 
 func _ready() -> void:
+	super()
 	scene_transition.color.a = 255
 	scene_transition.visible = true
 	trans_player.play("fade_out")
 	await get_tree().create_timer(1).timeout
 
 func _on_child_entered_game(node: Node) -> void:
-	print("Count: " + str(node.get_child_count()))
 	for child in node.get_children(true):
 		manage_Children(node)
 	

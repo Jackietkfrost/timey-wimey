@@ -10,7 +10,6 @@ var enemies_ref: Array[Enemy_Base] = []
 signal timeshift(timescale : float)
 
 func _ready() -> void:
-	
 	AudioPlayer.play_music_level()
 
 # TODO: Fix this to send all instead, and let on child_entered_tree handle this by checking if
@@ -20,20 +19,16 @@ func manage_Children(node: Node) -> void:
 		_on_child_entered_tree(node)
 	if node.name == "enemies":
 		for child in node.get_children():
-			print("enemy " + str(child.name) + " adding!")
 			if child.name == "flying enemies":
 				for flyingChild in node.get_children():
 					_on_child_entered_tree(flyingChild)
 			_on_child_entered_tree(child)
 	if node.name == "traps":
 		for child in node.get_children():
-			print("Trap " + str(child.name) + " adding!")
 			_on_child_entered_tree(child)
 	if node.name == "fans":
 		for child in node.get_children():
-			print("Fan " + str(child.name) + " adding!")
 			_on_child_entered_tree(child)
-	
 	
 func _on_child_entered_tree(node: Node) -> void:
 	if node is Player:

@@ -4,6 +4,7 @@ extends LevelManager
 @onready var trans_player: AnimationPlayer = $Player/Scene_Transition/trans_player
 
 func _ready() -> void:
+	super()
 	scene_transition.color.a = 255
 	scene_transition.visible = true
 	trans_player.play("fade_out")
