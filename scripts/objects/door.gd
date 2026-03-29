@@ -23,17 +23,14 @@ func _process(_delta: float) -> void:
 				get_tree().quit() # Quit lol
 			else:
 				print(get_tree().get_current_scene().get_name())
-		pass
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player = body
 		sprite.visible = true
 		isInteractable = true
-	pass # Replace with function body.
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
 		sprite.visible = false
 		isInteractable = false
-	pass # Replace with function body.
