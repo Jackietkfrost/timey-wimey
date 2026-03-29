@@ -7,6 +7,8 @@ func _play_music(music: AudioStream, volume: float = 0.0):
 		print("passing")
 		return
 		
+	#music.set_loop(true)
+	
 	self.stream = music
 	print("new stream: " + str(self.stream))
 	volume_db = volume
