@@ -7,34 +7,23 @@ signal timeshift()
 
 #@export var curve2d:Curve2D
 @export var runSpeed:float = .2
-@export var isFlying:bool = false
+@export_enum("walk", "fly") var enemy_type = "walk";
 @export var canBePaused: bool = true
 
 var timescale: float = 1
 
 func _ready() -> void:
-	#self.curve2D = curve2d
-	if timescale > 0:
-		if isFlying:
-			sprite.play("fly")
-			pass
-		else:
-			sprite.play("walk")
+	sprite.play(enemy_type, timescale)
 
 func _process(delta: float) -> void:
-	if timescale > 0:
-		sprite.play()
-	if timescale == 0:
-		sprite.stop()
 	path2d.progress_ratio += (runSpeed * timescale) * delta
 
-
-func _on_timeshift(timeshift_type: String, newTimescale:float) -> void:
+func _on_timeshift(newTimescale:float) -> void:
 	if canBePaused:
 		timescale = newTimescale
-
+		sprite.play(enemy_type, timescale)
 
 func _on_kill_zone_body_entered(body: Node2D) -> void:
 	if body is Player:
-		if not body.died:
+		if !body.died && !body.is_rewinding_self:
 			body.player_rewinded.emit(true)

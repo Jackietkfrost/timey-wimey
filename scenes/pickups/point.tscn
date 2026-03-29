@@ -3,10 +3,6 @@
 [ext_resource type="Script" uid="uid://c2k80yr4wit7v" path="res://scripts/pickups/point.gd" id="1_5874r"]
 [ext_resource type="Texture2D" uid="uid://c53imoycnjus5" path="res://assets/tiles/Tilemap/monochrome_tilemap_transparent.png" id="1_ieux2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5874r"]
-atlas = ExtResource("1_ieux2")
-region = Rect2(17, 17, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_4jrat"]
 atlas = ExtResource("1_ieux2")
 region = Rect2(34, 17, 16, 16)
@@ -15,12 +11,13 @@ region = Rect2(34, 17, 16, 16)
 atlas = ExtResource("1_ieux2")
 region = Rect2(51, 17, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fpoa"]
+atlas = ExtResource("1_ieux2")
+region = Rect2(68, 17, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_brxwa"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5874r")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4jrat")
 }, {
@@ -28,7 +25,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_4b2jt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4jrat")
+"texture": SubResource("AtlasTexture_0fpoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b2jt")
 }],
 "loop": true,
 "name": &"default",
@@ -43,8 +43,7 @@ script = ExtResource("1_5874r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_brxwa")
-frame = 3
-frame_progress = 0.22626
+frame_progress = 0.902477
 
 [node name="Area2D" type="Area2D" parent="."]
 

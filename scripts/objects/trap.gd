@@ -1,13 +1,13 @@
 class_name Trap extends Area2D
 
-signal trap_timeshift(timeshift_type: String, timescale_new: int)
+signal timeshift(timescale : float)
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var is_active: bool = false
 var is_touching : bool = false
 var is_in_range: bool = false
-var timescale: int = 1
+var timescale: float = 1
 var player_ref : Player
 
 func _on_body_entered(body: Node2D) -> void:
@@ -31,7 +31,7 @@ func _on_body_exited(body: Node2D) -> void:
 	if body is Player :
 		is_in_range = false
 
-func _on_trap_timeshift(_timeshift_type: String, timescale_new: int) -> void:
+func _on_timeshift(timescale_new: float) -> void:
 	timescale = timescale_new
 
 func _process(_delta: float) -> void:

@@ -12,9 +12,9 @@ region = Rect2(48, 160, 16, 16)
 atlas = ExtResource("2_7222y")
 region = Rect2(48, 144, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fwotp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_egwl1"]
 atlas = ExtResource("1_3w8vf")
-region = Rect2(68, 170, 16, 16)
+region = Rect2(85, 170, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o1dq4"]
 animations = [{
@@ -31,7 +31,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fwotp")
+"texture": SubResource("AtlasTexture_egwl1")
 }],
 "loop": true,
 "name": &"default",
@@ -51,6 +51,7 @@ script = ExtResource("1_fwotp")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_o1dq4")
 animation = &"active"
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -9.5)
@@ -64,6 +65,6 @@ shape = SubResource("RectangleShape2D_fwotp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_near"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="trap_timeshift" from="." to="." method="_on_trap_timeshift"]
+[connection signal="timeshift" from="." to="." method="_on_timeshift"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var coin_sound: AudioStreamPlayer = $AudioStreamPlayer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var area_2d: Area2D = $Area2D
 

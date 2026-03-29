@@ -73,4 +73,4 @@ libraries = {
 &"": SubResource("AnimationLibrary_ofntn")
 }
 
-[connection signal="platform_timeshift" from="." to="." method="_on_platform_timeshift"]
+[connection signal="timeshift" from="." to="." method="_on_timeshift"]
