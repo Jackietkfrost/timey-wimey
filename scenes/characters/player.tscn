@@ -241,6 +241,7 @@ libraries = {
 }
 
 [node name="PauseMenuCanvas" parent="." instance=ExtResource("5_mxi64")]
+visible = false
 
 [node name="Scene_Transition" parent="." instance=ExtResource("6_kqtwu")]
 

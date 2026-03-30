@@ -28,10 +28,14 @@ size_flags_vertical = 4
 
 [node name="StartGameButton" type="Button" parent="MainMenuPanel/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../LevelSelectButton")
 text = "Start Game"
 
 [node name="LevelSelectButton" type="Button" parent="MainMenuPanel/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../StartGameButton")
+focus_neighbor_bottom = NodePath("../AudioButton")
 text = "Level Select"
 
 [node name="AudioButton" type="Button" parent="MainMenuPanel/VBoxContainer"]
@@ -40,6 +44,8 @@ text = "Audio"
 
 [node name="QuitButton" type="Button" parent="MainMenuPanel/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../AudioButton")
+focus_neighbor_bottom = NodePath("../StartGameButton")
 text = "Quit"
 
 [node name="AudioMenuPanel" type="PanelContainer" parent="."]
@@ -67,6 +73,8 @@ vertical_alignment = 1
 [node name="MasterSlider" type="HSlider" parent="AudioMenuPanel/AudioPanel"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../BackButton")
+focus_neighbor_bottom = NodePath("../MusicSlider")
 max_value = 1.0
 step = 0.05
 value = 1.0
@@ -81,6 +89,8 @@ vertical_alignment = 1
 [node name="MusicSlider" type="HSlider" parent="AudioMenuPanel/AudioPanel"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../MasterSlider")
+focus_neighbor_bottom = NodePath("../SFXSlider")
 max_value = 1.0
 step = 0.05
 value = 1.0
@@ -95,12 +105,16 @@ vertical_alignment = 1
 [node name="SFXSlider" type="HSlider" parent="AudioMenuPanel/AudioPanel"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../MusicSlider")
+focus_neighbor_bottom = NodePath("../BackButton")
 max_value = 1.0
 step = 0.05
 value = 1.0
 
 [node name="BackButton" type="Button" parent="AudioMenuPanel/AudioPanel"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../SFXSlider")
+focus_neighbor_bottom = NodePath("../MasterSlider")
 text = "Back"
 
 [node name="LevelGridPanel" type="PanelContainer" parent="."]
@@ -122,26 +136,39 @@ columns = 3
 [node name="Level1Button" type="Button" parent="LevelGridPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_left = NodePath("../Level3Button")
+focus_neighbor_right = NodePath("../Level2Button")
+focus_neighbor_bottom = NodePath("../BackFromLevelSelectButton")
 text = "Level
 1"
 icon_alignment = 1
 
 [node name="Level2Button" type="Button" parent="LevelGridPanel/MarginContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Level1Button")
+focus_neighbor_right = NodePath("../Level3Button")
+focus_neighbor_bottom = NodePath("../BackFromLevelSelectButton")
 text = "Level
 2"
 
 [node name="Level3Button" type="Button" parent="LevelGridPanel/MarginContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Level2Button")
+focus_neighbor_right = NodePath("../Level1Button")
+focus_neighbor_bottom = NodePath("../BackFromLevelSelectButton")
 text = "Level
 3"
 
 [node name="BackFromLevelSelectButton" type="Button" parent="LevelGridPanel/MarginContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Level3Button")
+focus_neighbor_top = NodePath("../Level1Button")
+focus_neighbor_right = NodePath("../Level2Button")
 text = "Back"
 
 [node name="Scene_Transition" parent="." instance=ExtResource("3_1g8jr")]
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="MainMenuPanel/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="MainMenuPanel/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="MainMenuPanel/VBoxContainer/AudioButton" to="." method="_on_audio_button_pressed"]

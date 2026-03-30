@@ -8,6 +8,8 @@ extends Control
 @onready var SFX_BUS_ID = AudioServer.get_bus_index("SFX")
 @onready var scene_transition: AnimationPlayer = $Scene_Transition.get_node("%trans_player")
 
+
+
 func _on_start_game_button_pressed() -> void:
 	scene_transition.play("fade_in")
 	await get_tree().create_timer(1).timeout
@@ -19,12 +21,14 @@ func _on_level_select_button_pressed() -> void:
 	await get_tree().create_timer(1).timeout
 	scene_transition.play("fade_out")
 	show_levelselect_menu()
+	$LevelGridPanel/MarginContainer/GridContainer/Level1Button.grab_focus()
 
 func _on_audio_button_pressed() -> void:
 	scene_transition.play("fade_in")
 	await get_tree().create_timer(1).timeout
 	scene_transition.play("fade_out")
 	show_audio_menu()
+	$AudioMenuPanel/AudioPanel/MasterSlider.grab_focus()
 
 
 func _on_quit_button_pressed() -> void:
@@ -54,6 +58,7 @@ func _on_back_button_pressed() -> void:
 	scene_transition.play("fade_out")
 	audio_menu_panel.visible = false
 	main_menu_panel.visible = true
+	$MainMenuPanel/VBoxContainer/StartGameButton.grab_focus()
 
 func show_audio_menu():
 	audio_menu_panel.visible = true
@@ -70,6 +75,7 @@ func _on_back_from_level_select_button_pressed() -> void:
 	scene_transition.play("fade_out")
 	level_grid_panel.visible = false
 	main_menu_panel.visible = true
+	$MainMenuPanel/VBoxContainer/StartGameButton.grab_focus()
 
 
 func _on_level_1_button_pressed() -> void:
@@ -90,6 +96,5 @@ func _on_level_3_button_pressed() -> void:
 	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("uid://fdiuab7kqqpa")
 
-
-	
-	
+func _on_ready() -> void:
+	$MainMenuPanel/VBoxContainer/StartGameButton.grab_focus()
