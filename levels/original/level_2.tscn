@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cywhrka4sqcxv"]
+[gd_scene load_steps=19 format=4 uid="uid://cywhrka4sqcxv"]
 
 [ext_resource type="Script" uid="uid://bnrvysbplfuns" path="res://scripts/levels/level_2.gd" id="1_irc72"]
 [ext_resource type="TileSet" uid="uid://clhnlvcyj7sf" path="res://assets/tiles/map_tileset.tres" id="2_lnwx6"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://btibsxabxfxhr" path="res://assets/moving_platform.tscn" id="8_fcn0d"]
 [ext_resource type="PackedScene" uid="uid://8g1p8dk7vlpo" path="res://scenes/Objects/fan.tscn" id="9_8ovvt"]
 [ext_resource type="PackedScene" uid="uid://0h6jbu30xjpj" path="res://scenes/pickups/point.tscn" id="10_y4d1l"]
+[ext_resource type="PackedScene" uid="uid://hanceraq2teg" path="res://scenes/Objects/checkpoint_flag.tscn" id="11_lnwx6"]
 
 [sub_resource type="Curve2D" id="Curve2D_ep78u"]
 _data = {
@@ -243,6 +244,9 @@ position = Vector2(520, 313)
 
 [node name="Fan3" parent="fans" instance=ExtResource("9_8ovvt")]
 position = Vector2(520, 281)
+
+[node name="CheckpointFlag" parent="." instance=ExtResource("11_lnwx6")]
+position = Vector2(464, 440)
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="timeshift" from="." to="." method="_on_timeshift"]

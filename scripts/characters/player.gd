@@ -161,7 +161,7 @@ func _rewind_player() -> void :
 			gameInstance.timeshift.emit(-temp.timescale * rewind_speed)
 			timescale= temp.timescale
 
-func _save_player_history(player_position: Vector2, player_animation : float, timescale_history : float) -> void :
+func _save_player_history(player_position: Vector2, player_animation : float, _timescale_history : float) -> void :
 	var temp : history_data = history_data.new()
 	temp.location = player_position
 	temp.sprite_direction = player_animation
@@ -170,6 +170,9 @@ func _save_player_history(player_position: Vector2, player_animation : float, ti
 	if rewind_counter >= 0 :
 		rewind_counter -= 1
 	
+func _clear_player_history():
+	history.clear()
+	print("Cleared player rewind history")
 func _set_sprite (horizontal_direction : float) -> void :
 	#If Character is on floor, set character to walking animations
 	if is_on_floor() :
