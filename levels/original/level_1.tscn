@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dh5t46h13p0vc"]
+[gd_scene load_steps=17 format=4 uid="uid://dh5t46h13p0vc"]
 
 [ext_resource type="Script" uid="uid://cnumccjio1f1" path="res://scripts/levels/level_1.gd" id="1_l6rpw"]
 [ext_resource type="TileSet" uid="uid://clhnlvcyj7sf" path="res://assets/tiles/map_tileset.tres" id="2_l6rpw"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dlp72elqtg7ba" path="res://scenes/Objects/key.tscn" id="8_4v5f1"]
 [ext_resource type="PackedScene" uid="uid://sk16xc8lf2rx" path="res://scenes/characters/enemy_base.tscn" id="9_qovkd"]
 [ext_resource type="PackedScene" uid="uid://0h6jbu30xjpj" path="res://scenes/pickups/point.tscn" id="10_fwyyc"]
+[ext_resource type="PackedScene" uid="uid://hanceraq2teg" path="res://scenes/Objects/checkpoint_flag.tscn" id="11_l6rpw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bjebc"]
 texture = ExtResource("3_6j0gg")
@@ -942,6 +943,9 @@ rotation = 3.14159
 [node name="Fan" parent="fans" instance=ExtResource("7_og4b8")]
 position = Vector2(825, 345)
 rotation = 3.14159
+
+[node name="CheckpointFlag" parent="." instance=ExtResource("11_l6rpw")]
+position = Vector2(408, 296)
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_game"]
 [connection signal="timeshift" from="." to="." method="_on_timeshift"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://fdiuab7kqqpa"]
+[gd_scene load_steps=18 format=4 uid="uid://fdiuab7kqqpa"]
 
 [ext_resource type="Script" uid="uid://8s648j7jmly0" path="res://scripts/levels/level_3.gd" id="1_eog6p"]
 [ext_resource type="TileSet" uid="uid://clhnlvcyj7sf" path="res://assets/tiles/map_tileset.tres" id="2_xikr7"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ywjpdoaeuhju" path="res://scenes/Objects/jump_pad.tscn" id="7_vsoxo"]
 [ext_resource type="PackedScene" uid="uid://sk16xc8lf2rx" path="res://scenes/characters/enemy_base.tscn" id="8_l8ag2"]
 [ext_resource type="PackedScene" uid="uid://0h6jbu30xjpj" path="res://scenes/pickups/point.tscn" id="9_u7upn"]
+[ext_resource type="PackedScene" uid="uid://hanceraq2teg" path="res://scenes/Objects/checkpoint_flag.tscn" id="10_xikr7"]
 
 [sub_resource type="Curve2D" id="Curve2D_7j8ne"]
 _data = {
@@ -197,6 +198,12 @@ position = Vector2(664, 520)
 
 [node name="Point24" parent="points" instance=ExtResource("9_u7upn")]
 position = Vector2(256, 432)
+
+[node name="CheckpointFlag" parent="." instance=ExtResource("10_xikr7")]
+position = Vector2(104, 280)
+
+[node name="CheckpointFlag2" parent="." instance=ExtResource("10_xikr7")]
+position = Vector2(440, 280)
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="timeshift" from="." to="." method="_on_timeshift"]
