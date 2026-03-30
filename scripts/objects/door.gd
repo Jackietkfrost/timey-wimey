@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 			doorOpen = true
 			$DoorSprite.play("door_open")
 		elif doorOpen:
-			if get_tree().get_current_scene().get_name() == "Level 1":
+			if get_tree().get_current_scene().get_name() == "Level1":
 				get_tree().change_scene_to_file("uid://cywhrka4sqcxv") # Level2
 			elif get_tree().get_current_scene().get_name() == "Level2": # ^COPY THAT, REPLACE if's   == "[INSERT_NEXTLEVEL_NAME]" do that below here
 				get_tree().change_scene_to_file("uid://fdiuab7kqqpa") # Level3
