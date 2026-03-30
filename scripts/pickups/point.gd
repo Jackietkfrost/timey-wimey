@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player && area_2d.monitoring == true:
-		area_2d.monitoring = false
+		area_2d.set_deferred("monitoring", false)
 		self.visible = false
 		AudioPlayer.play_FX(sound)
 		
